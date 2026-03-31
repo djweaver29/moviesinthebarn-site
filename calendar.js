@@ -215,16 +215,14 @@ function setViewMode(mode) {
       if (img) img.style.transform = "";
       if (info) info.style.transform = "";
     });
-    // Reset nav/overlay inline z-index
-    var nav = document.querySelector(".site-header");
-    if (nav) nav.style.zIndex = "";
-    var overlay = document.getElementById("film-modal-overlay");
-    if (overlay) overlay.style.zIndex = "";
   }
 
   // Update toggle button state
   var btn = document.getElementById("mode-toggle");
   if (btn) btn.setAttribute("aria-pressed", mode === "fun");
+
+  // Re-sync navbar/overlay z-indexes so they stay above the hero logo
+  if (window._syncChrome) window._syncChrome();
 
   // Fire custom event so page scripts can re-render
   window.dispatchEvent(new CustomEvent("modechange", { detail: { mode: mode } }));
@@ -737,6 +735,8 @@ window.addEventListener("hashchange", function() {
     if (openMenu) openMenu.style.zIndex = navZ + 2;
     if (overlay) overlay.style.zIndex = navZ + 200;
   }
+  // Expose so mode toggle can re-sync chrome z-indexes
+  window._syncChrome = syncChrome;
 
   function promote(card) {
     if (!card) return;
