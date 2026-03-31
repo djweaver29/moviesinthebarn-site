@@ -1010,15 +1010,17 @@ em { font-style: italic; }
 
   .nav-links.open {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
     position: absolute;
     top: 80px;
     left: 0; right: 0;
     background: var(--cream);
-    padding: 1rem 2rem 1.5rem;
+    padding: 1rem 2rem;
     border-bottom: 1px solid color-mix(in srgb, var(--rust) 15%, transparent);
     z-index: 110;
-    gap: 0.5rem;
+    column-gap: 0.5rem;
+    row-gap: 0.85rem;
   }
 
   .theme-bubble-row,
