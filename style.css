@@ -150,7 +150,6 @@ em { font-style: italic; }
   width: auto;
   max-width: 900px;
   background: transparent;
-  mix-blend-mode: multiply;
   transform-origin: left top;
 }
 
