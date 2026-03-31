@@ -318,66 +318,49 @@
     if (toggleBtn) toggleBtn.setAttribute("aria-pressed", savedMode === "fun");
 
     // ── Logo scroll behaviour ────────────────────────────────
-    // The logo continuously scales from full size to navbar size as you
-    // scroll through the hero. Once fully shrunk, it switches to
-    // position:fixed so it stays in the navbar after the hero scrolls away.
+    // The hero logo stays sticky and scales down as you scroll.
+    // Once the hero scrolls away, the nav logo (already in the navbar)
+    // fades in. No position switching, no layout shifts.
 
     const heroLogoWrap = document.querySelector(".hero-logo-wrap");
     const heroLogo     = heroLogoWrap.querySelector(".hero-logo");
     const heroSection  = document.querySelector(".hero");
+    const heroText     = heroSection.querySelector(".hero-text");
+    const navLogo      = document.querySelector(".site-header .logo");
 
-    const logoFullHeight = 320;   // CSS .hero-logo height
-    const logoNavHeight  = 58;    // target height in navbar
+    const logoFullHeight = 320;
+    const logoNavHeight  = 58;
     const minScale       = logoNavHeight / logoFullHeight;
-    const shrinkRange    = logoFullHeight - logoNavHeight;
-    let logoFixed = false;
 
-    // The scroll position at which the sticky logo first hits its top:11px stop
+    // The hero logo shrinks over this scroll distance
+    const shrinkRange = logoFullHeight * 0.6;
+
+    // Scroll-Y where the sticky logo first touches its top:11px stop
     const stickyEngageY = heroLogoWrap.getBoundingClientRect().top + window.scrollY - 11;
-
-    function getLogoLeft() {
-      const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
-      return Math.max((window.innerWidth - 1400) / 2, 0) + 2 * rem;
-    }
 
     function updateLogo() {
       const scrolled = window.scrollY - stickyEngageY;
       const progress = Math.max(0, Math.min(1, scrolled / shrinkRange));
 
-      if (progress < 1) {
-        // ── Scaling phase: logo is sticky and shrinks continuously ──
-        if (logoFixed) {
-          logoFixed = false;
-          heroLogoWrap.style.cssText = "";
-          heroLogoWrap.classList.remove("is-stuck");
-          heroSection.classList.remove("hero--stuck");
-        }
-        const scale = 1 - progress * (1 - minScale);
-        heroLogo.style.transform = "scale(" + scale.toFixed(5) + ")";
+      // Scale the hero logo
+      const scale = 1 - progress * (1 - minScale);
+      heroLogo.style.transform = "scale(" + scale.toFixed(5) + ")";
 
-        // Fade hero text in the first half of the shrink
-        const heroText = heroSection.querySelector(".hero-text");
-        if (heroText) heroText.style.opacity = Math.max(0, 1 - progress * 2.5);
-      } else {
-        // ── Fixed phase: lock logo into navbar ──
-        heroLogo.style.transform = "scale(" + minScale + ")";
-        if (!logoFixed) {
-          logoFixed = true;
-          heroLogoWrap.classList.add("is-stuck");
-          heroSection.classList.add("hero--stuck");
-          const navZ = parseInt(getComputedStyle(document.querySelector(".site-header")).zIndex) || 110;
-          heroLogoWrap.style.cssText =
-            `position:fixed;top:11px;left:${getLogoLeft()}px;margin:0;z-index:${navZ};width:fit-content;`;
-        }
-        const heroText = heroSection.querySelector(".hero-text");
-        if (heroText) heroText.style.opacity = 0;
+      // Fade hero text in the first half
+      if (heroText) heroText.style.opacity = Math.max(0, 1 - progress * 2.5);
+
+      // Once the hero logo area scrolls past the navbar, show the nav logo
+      const wrapRect = heroLogoWrap.getBoundingClientRect();
+      const heroLogoBtm = wrapRect.top + logoNavHeight; // visible bottom of scaled logo
+      const navShow = heroLogoBtm < 80; // 80 = navbar height
+
+      if (navLogo) {
+        navLogo.style.opacity = navShow ? "1" : "0";
+        navLogo.style.pointerEvents = navShow ? "auto" : "none";
       }
     }
 
     window.addEventListener("scroll", updateLogo, { passive: true });
-    window.addEventListener("resize", function () {
-      if (logoFixed) heroLogoWrap.style.left = getLogoLeft() + "px";
-    }, { passive: true });
     updateLogo();
 
     // Highlight active nav link based on scroll position

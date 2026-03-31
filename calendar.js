@@ -729,9 +729,6 @@ window.addEventListener("hashchange", function() {
   function syncChrome() {
     var navZ = zCounter + 100;
     if (nav) nav.style.zIndex = navZ;
-    // Hero logo sits at nav level when fixed
-    var heroLogo = document.querySelector(".hero-logo-wrap.is-stuck");
-    if (heroLogo) heroLogo.style.zIndex = navZ;
     // Search bar row sticks below nav — keep it one above
     var searchRow = document.querySelector(".section-inner[style]");
     if (searchRow) searchRow.style.zIndex = navZ + 1;
