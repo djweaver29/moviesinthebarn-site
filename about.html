@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Movies in the Barn</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/favicon.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav-inner">
+      <a href="index.html" class="logo-link">
+        <img src="images/logo.png" alt="Movies in the Barn" class="logo" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Now Showing</a></li>
+        <li><a href="lineup.html" class="nav-link">Full Lineup</a></li>
+        <li><a href="archive.html" class="nav-link">Archive</a></li>
+        <li><a href="about.html" class="nav-link active">About</a></li>
+      </ul>
+      <button class="mode-toggle" id="mode-toggle" aria-label="Toggle fun mode" aria-pressed="false"
+              onclick="setViewMode(getViewMode() === 'fun' ? 'boring' : 'fun')">
+        <span class="mode-toggle-label mode-toggle-label--boring">&#9734;</span>
+        <span class="mode-toggle-label mode-toggle-label--fun">&#9733;</span>
+      </button>
+      <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="about-hero">
+      <div class="about-bubble about-bubble--1" aria-hidden="true"></div>
+      <div class="about-bubble about-bubble--2" aria-hidden="true"></div>
+      <div class="about-content">
+        <h1 class="page-title">About <em>Movies in the Barn</em></h1>
+        <div class="about-body">
+          <p>Movies in the Barn is a twice-monthly screening series hosted and curated by <strong>Dylan Weaver</strong>.</p>
+          <p>Each month pairs two films around a shared theme — a conversation between movies that might span decades, genres, and styles, but always find something to say to each other.</p>
+          <p>Screenings are held on Tuesdays at 7pm, twice a month.</p>
+          <a href="https://instagram.com/moviesinthebarn" target="_blank" class="instagram-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            Follow @moviesinthebarn
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Follow us on Instagram <a href="https://instagram.com/moviesinthebarn" target="_blank">@moviesinthebarn</a></p>
+    <p class="footer-sub">Movies in the Barn is curated by Dylan Weaver.</p>
+  </footer>
+
+<script src="calendar.js"></script>
+<script>
+document.querySelector(".nav-toggle").addEventListener("click", function() {
+  document.querySelector(".nav-links").classList.toggle("open");
+});
+var savedMode = getViewMode();
+var toggleBtn = document.getElementById("mode-toggle");
+if (toggleBtn) toggleBtn.setAttribute("aria-pressed", savedMode === "fun");
+</script>
+</body>
+</html>

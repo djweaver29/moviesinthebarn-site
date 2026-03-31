@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Full Lineup — Movies in the Barn</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/favicon.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav-inner">
+      <a href="index.html" class="logo-link">
+        <img src="images/logo.png" alt="Movies in the Barn" class="logo" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Now Showing</a></li>
+        <li><a href="lineup.html" class="nav-link active">Full Lineup</a></li>
+        <li><a href="archive.html" class="nav-link">Archive</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+      <button class="mode-toggle" id="mode-toggle" aria-label="Toggle fun mode" aria-pressed="false"
+              onclick="setViewMode(getViewMode() === 'fun' ? 'boring' : 'fun')">
+        <span class="mode-toggle-label mode-toggle-label--boring">&#9734;</span>
+        <span class="mode-toggle-label mode-toggle-label--fun">&#9733;</span>
+      </button>
+      <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="page-hero-text">
+        <h1 class="page-title">Full Lineup <em>2026</em></h1>
+        <p class="page-subtitle">Twice a month · Tuesdays at 7pm</p>
+      </div>
+      <div class="page-bubble" aria-hidden="true"></div>
+    </section>
+
+    <section class="lineup-section" id="lineup-container">
+      <!-- injected by JS -->
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Follow us on Instagram <a href="https://instagram.com/moviesinthebarn" target="_blank">@moviesinthebarn</a></p>
+    <p class="footer-sub">Movies in the Barn is curated by Dylan Weaver.</p>
+  </footer>
+
+  <script src="events.js"></script>
+  <script src="movie-meta.js"></script>
+  <script src="calendar.js"></script>
+  <script>
+    // Merge TMDB metadata into events
+    EVENTS.forEach(e => {
+      const m = MOVIE_META[e.title];
+      if (m) Object.assign(e, m);
+    });
+  </script>
+  <script>
+    const CURRENT_YEAR = 2026;
+    const yearEvents = EVENTS.filter(e => e.year === CURRENT_YEAR)
+      .sort((a, b) => new Date(a.date) - new Date(b.date));
+
+    // Group by month
+    const byMonth = {};
+    yearEvents.forEach(e => {
+      if (!byMonth[e.month]) byMonth[e.month] = { theme: e.theme, events: [] };
+      byMonth[e.month].events.push(e);
+    });
+
+    const container = document.getElementById("lineup-container");
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    function renderLineup() {
+      const mode = getViewMode();
+      let html = "";
+
+      if (mode === "fun") {
+        Object.entries(byMonth).forEach(([month, data]) => {
+          const isPast = data.events.every(e => new Date(e.date + "T00:00:00") < today);
+          html += `
+            <div class="month-block ${isPast ? 'month-block--past' : ''}">
+              <div class="month-header">
+                <div class="month-bubble-pair">
+                  <div class="theme-circle theme-circle--month">${month}</div>
+                  <div class="theme-circle theme-circle--theme">${data.theme}</div>
+                </div>
+              </div>
+              <div class="month-films">
+                ${data.events.map(e => buildFilmCard(e, false)).join("")}
+              </div>
+            </div>
+          `;
+        });
+      } else {
+        Object.entries(byMonth).forEach(([month, data]) => {
+          html += `
+            <div class="archive-month-block">
+              <div class="archive-month-header">
+                <span class="archive-pill archive-pill--month">${month}</span>
+                <span class="archive-pill archive-pill--theme">${data.theme}</span>
+              </div>
+              <div class="archive-films">
+                ${data.events.map(buildComingSoonRow).join("")}
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      container.innerHTML = html;
+    }
+
+    renderLineup();
+    window.addEventListener("modechange", renderLineup);
+  </script>
+
+<script>
+document.querySelector(".nav-toggle").addEventListener("click", function() {
+  document.querySelector(".nav-links").classList.toggle("open");
+});
+var savedMode = getViewMode();
+var toggleBtn = document.getElementById("mode-toggle");
+if (toggleBtn) toggleBtn.setAttribute("aria-pressed", savedMode === "fun");
+</script>
+</body>
+</html>

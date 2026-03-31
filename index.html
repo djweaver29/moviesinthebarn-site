@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movies in the Barn</title>
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/favicon.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav-inner">
+      <a href="#" class="logo-link">
+        <img src="images/logo.png" alt="Movies in the Barn" class="logo" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="#now-showing" class="nav-link">Now Showing</a></li>
+        <li><a href="#coming-soon" class="nav-link">Coming Soon</a></li>
+        <li><a href="#archive" class="nav-link">Archive</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+      </ul>
+      <button class="mode-toggle" id="mode-toggle" aria-label="Toggle fun mode" aria-pressed="false"
+              onclick="setViewMode(getViewMode() === 'fun' ? 'boring' : 'fun')">
+        <span class="mode-toggle-label mode-toggle-label--boring">&#9734;</span>
+        <span class="mode-toggle-label mode-toggle-label--fun">&#9733;</span>
+      </button>
+      <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-logo-wrap">
+        <img src="images/logo.png" alt="Movies in the Barn" class="hero-logo" />
+      </div>
+      <div class="hero-text">
+        <p class="hero-eyebrow">Twice a month · Tuesdays at 7pm</p>
+      </div>
+    </section>
+
+    <!-- Now Showing -->
+    <section class="sp-section sp-section--first" id="now-showing">
+      <div class="section-inner">
+        <h2 class="section-label">Now <em>Showing</em></h2>
+        <div class="month-films" id="up-next-films"></div>
+      </div>
+    </section>
+
+    <!-- Coming Up -->
+    <section class="sp-section sp-section--tinted" id="coming-soon">
+      <div class="section-inner">
+        <h2 class="section-label">Coming <em>Soon</em></h2>
+        <div id="coming-up-container"></div>
+      </div>
+    </section>
+
+    <!-- Archive -->
+    <section class="sp-section" id="archive">
+      <div class="section-inner">
+        <h2 class="section-label">Archive</h2>
+        <div class="search-bar" style="margin-bottom: 2rem;">
+          <input type="search" id="search-input" class="search-input"
+                 placeholder="Search by title, director, cast, genre, or release year…" aria-label="Search films" />
+          <div class="filter-pills" id="year-filters"></div>
+        </div>
+        <div id="archive-container"></div>
+        <p class="no-results hidden" id="no-results">No films found matching your search.</p>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="sp-section sp-section--tinted" id="about">
+      <div class="section-inner">
+        <div class="about-inline-wrap">
+          <div class="about-content">
+            <h2 class="section-label">About <em>Movies in the Barn</em></h2>
+            <div class="about-body">
+              <p>Movies in the Barn is a twice-monthly screening series hosted and curated by <strong>Dylan Weaver</strong>.</p>
+              <p>Each month pairs two films around a shared theme — a conversation between movies that might span decades, genres, and styles, but always find something to say to each other.</p>
+              <p>Screenings are held on Tuesdays at 7pm, twice a month.</p>
+              <a href="https://instagram.com/moviesinthebarn" target="_blank" class="instagram-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                Follow @moviesinthebarn
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <script src="events.js"></script>
+  <script src="movie-meta.js"></script>
+  <script src="calendar.js"></script>
+  <script>
+
+    // ── Merge TMDB metadata into events ────────────────────
+    EVENTS.forEach(e => {
+      const m = MOVIE_META[e.title];
+      if (m) Object.assign(e, m);
+    });
+
+    // ── Date logic ──────────────────────────────────────────
+    // Movies are archived on the Friday following their screening date.
+
+    function fridayAfter(dateStr) {
+      const d = new Date(dateStr + "T00:00:00");
+      const day = d.getDay(); // 0=Sun … 5=Fri … 6=Sat
+      const daysUntilFriday = ((5 - day + 7) % 7) || 7; // never 0 (skip same-day Friday)
+      const friday = new Date(d);
+      friday.setDate(d.getDate() + daysUntilFriday);
+      return friday;
+    }
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    function isArchived(e) {
+      return today >= fridayAfter(e.date);
+    }
+
+    const allSorted = [...EVENTS].sort((a, b) => new Date(a.date) - new Date(b.date));
+    const upcoming  = allSorted.filter(e => !isArchived(e));
+    const archived  = allSorted.filter(e =>  isArchived(e)).reverse(); // newest-first
+
+    const featured = upcoming.slice(0, 2);
+    const rest     = upcoming.slice(2);
+
+    // ── Now Showing ─────────────────────────────────────────
+
+    const upNextFilms = document.getElementById("up-next-films");
+
+    if (featured.length > 0) {
+      upNextFilms.innerHTML = featured.map(e => buildFilmCard(e, true)).join("");
+    } else {
+      upNextFilms.innerHTML = `
+        <p class="section-empty">No upcoming screenings scheduled — check back soon!</p>
+      `;
+    }
+
+    // ── Coming Up ───────────────────────────────────────────
+
+    const comingUpSection   = document.getElementById("coming-soon");
+    const comingUpContainer = document.getElementById("coming-up-container");
+
+    function renderComingSoon() {
+      if (rest.length === 0) {
+        comingUpSection.hidden = true;
+        return;
+      }
+      comingUpSection.hidden = false;
+      const mode = getViewMode();
+
+      if (mode === "fun") {
+        comingUpContainer.innerHTML = `
+          <div class="month-films">
+            ${rest.map(e => buildFilmCard(e, false)).join("")}
+          </div>
+        `;
+      } else {
+        // Group by month/theme for archive-style layout
+        const byMonth = {};
+        rest.forEach(e => {
+          const key = e.month + "||" + e.theme;
+          if (!byMonth[key]) byMonth[key] = [];
+          byMonth[key].push(e);
+        });
+
+        comingUpContainer.innerHTML = Object.entries(byMonth).map(([key, events]) => {
+          const [month, theme] = key.split("||");
+          return `
+            <div class="archive-month-block">
+              <div class="archive-month-header">
+                <span class="archive-pill archive-pill--month">${month}</span>
+                <span class="archive-pill archive-pill--theme">${theme}</span>
+              </div>
+              <div class="archive-films">
+                ${events.map(buildComingSoonRow).join("")}
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+    }
+
+    renderComingSoon();
+
+    // ── Now Showing re-render on mode change ─────────────
+
+    function renderNowShowing() {
+      if (featured.length > 0) {
+        upNextFilms.innerHTML = featured.map(e => buildFilmCard(e, true)).join("");
+      }
+    }
+
+    window.addEventListener("modechange", function() {
+      renderNowShowing();
+      renderComingSoon();
+    });
+
+    // ── Archive ─────────────────────────────────────────────
+
+    const years = [...new Set(archived.map(e => e.year))].sort((a, b) => b - a);
+    let activeYear = "all";
+
+    function buildArchiveRow(e) {
+      const d = new Date(e.date + "T00:00:00");
+      const dateStr = d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+      const filmData = JSON.stringify(e).replace(/"/g, "&quot;");
+      return `
+        <div class="archive-row" data-film="${filmData}" onclick="openFilmModal(this)" style="cursor:pointer;">
+          ${e.posterUrl
+            ? `<img src="${e.posterUrl}" alt="${e.title}" class="archive-poster" loading="lazy" />`
+            : `<div class="archive-poster archive-poster--placeholder"><span>🎬</span></div>`
+          }
+          <div class="archive-row-info">
+            <h3 class="archive-title">${e.title}</h3>
+            <p class="archive-meta">${e.releaseYear} &middot; ${e.runtime} &middot; ${e.rating}</p>
+            ${(e.genres && e.genres.length) ? `<p class="archive-genres" hidden>${e.genres.join(" &middot; ")}</p>` : ""}
+            <p class="archive-date">${dateStr}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderPills() {
+      const pillContainer = document.getElementById("year-filters");
+      pillContainer.innerHTML = [
+        { label: "All Years", val: "all" },
+        ...years.map(y => ({ label: String(y), val: y }))
+      ].map(p => `
+        <button class="pill ${activeYear == p.val ? "pill--active" : ""}"
+                data-year="${p.val}">${p.label}</button>
+      `).join("");
+      pillContainer.querySelectorAll(".pill").forEach(btn => {
+        btn.addEventListener("click", () => {
+          activeYear = btn.dataset.year === "all" ? "all" : parseInt(btn.dataset.year);
+          renderPills();
+          renderArchive();
+        });
+      });
+    }
+
+    function renderArchive() {
+      const query = document.getElementById("search-input").value.toLowerCase().trim();
+      const filtered = archived.filter(e => {
+        const matchYear = activeYear === "all" || e.year === activeYear;
+        const matchQuery = !query
+          || e.title.toLowerCase().includes(query)
+          || e.theme.toLowerCase().includes(query)
+          || e.month.toLowerCase().includes(query)
+          || String(e.releaseYear).includes(query)
+          || (e.genres || []).some(g => g.toLowerCase().includes(query))
+          || (e.director || "").toLowerCase().includes(query)
+          || (e.cast || []).some(c => c.toLowerCase().includes(query));
+        return matchYear && matchQuery;
+      });
+
+      const container = document.getElementById("archive-container");
+      const noResults = document.getElementById("no-results");
+
+      if (filtered.length === 0) {
+        container.innerHTML = "";
+        noResults.classList.remove("hidden");
+        return;
+      }
+      noResults.classList.add("hidden");
+
+      const byYear = {};
+      filtered.forEach(e => {
+        if (!byYear[e.year]) byYear[e.year] = {};
+        const key = e.month + "||" + e.theme;
+        if (!byYear[e.year][key]) byYear[e.year][key] = [];
+        byYear[e.year][key].push(e);
+      });
+
+      container.innerHTML = Object.keys(byYear).sort((a, b) => b - a).map(year => `
+        <div class="archive-year">
+          <h3 class="archive-year-heading">${year}</h3>
+          ${Object.entries(byYear[year]).map(([key, events]) => {
+            const [month, theme] = key.split("||");
+            return `
+              <div class="archive-month-block">
+                <div class="archive-month-header">
+                  <span class="archive-pill archive-pill--month">${month}</span>
+                  <span class="archive-pill archive-pill--theme">${theme}</span>
+                </div>
+                <div class="archive-films">
+                  ${events.map(buildArchiveRow).join("")}
+                </div>
+              </div>
+            `;
+          }).join("")}
+        </div>
+      `).join("");
+    }
+
+    renderPills();
+    renderArchive();
+    document.getElementById("search-input").addEventListener("input", renderArchive);
+
+  </script>
+
+  <script>
+    document.querySelector(".nav-toggle").addEventListener("click", function () {
+      document.querySelector(".nav-links").classList.toggle("open");
+    });
+
+    // Sync toggle button with saved mode
+    var savedMode = getViewMode();
+    var toggleBtn = document.getElementById("mode-toggle");
+    if (toggleBtn) toggleBtn.setAttribute("aria-pressed", savedMode === "fun");
+
+    // ── Logo scroll behaviour ────────────────────────────────
+    // The logo continuously scales from full size to navbar size as you
+    // scroll through the hero. Once fully shrunk, it switches to
+    // position:fixed so it stays in the navbar after the hero scrolls away.
+
+    const heroLogoWrap = document.querySelector(".hero-logo-wrap");
+    const heroLogo     = heroLogoWrap.querySelector(".hero-logo");
+    const heroSection  = document.querySelector(".hero");
+
+    const logoFullHeight = 320;   // CSS .hero-logo height
+    const logoNavHeight  = 58;    // target height in navbar
+    const minScale       = logoNavHeight / logoFullHeight;
+    const shrinkRange    = logoFullHeight - logoNavHeight;
+    let logoFixed = false;
+
+    // The scroll position at which the sticky logo first hits its top:11px stop
+    const stickyEngageY = heroLogoWrap.getBoundingClientRect().top + window.scrollY - 11;
+
+    function getLogoLeft() {
+      const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+      return Math.max((window.innerWidth - 1400) / 2, 0) + 2 * rem;
+    }
+
+    function updateLogo() {
+      const scrolled = window.scrollY - stickyEngageY;
+      const progress = Math.max(0, Math.min(1, scrolled / shrinkRange));
+
+      if (progress < 1) {
+        // ── Scaling phase: logo is sticky and shrinks continuously ──
+        if (logoFixed) {
+          logoFixed = false;
+          heroLogoWrap.style.cssText = "";
+          heroLogoWrap.classList.remove("is-stuck");
+          heroSection.classList.remove("hero--stuck");
+        }
+        const scale = 1 - progress * (1 - minScale);
+        heroLogo.style.transform = "scale(" + scale.toFixed(5) + ")";
+
+        // Fade hero text in the first half of the shrink
+        const heroText = heroSection.querySelector(".hero-text");
+        if (heroText) heroText.style.opacity = Math.max(0, 1 - progress * 2.5);
+      } else {
+        // ── Fixed phase: lock logo into navbar ──
+        heroLogo.style.transform = "scale(" + minScale + ")";
+        if (!logoFixed) {
+          logoFixed = true;
+          heroLogoWrap.classList.add("is-stuck");
+          heroSection.classList.add("hero--stuck");
+          const navZ = parseInt(getComputedStyle(document.querySelector(".site-header")).zIndex) || 110;
+          heroLogoWrap.style.cssText =
+            `position:fixed;top:11px;left:${getLogoLeft()}px;margin:0;z-index:${navZ};width:fit-content;`;
+        }
+        const heroText = heroSection.querySelector(".hero-text");
+        if (heroText) heroText.style.opacity = 0;
+      }
+    }
+
+    window.addEventListener("scroll", updateLogo, { passive: true });
+    window.addEventListener("resize", function () {
+      if (logoFixed) heroLogoWrap.style.left = getLogoLeft() + "px";
+    }, { passive: true });
+    updateLogo();
+
+    // Highlight active nav link based on scroll position
+    const sections = ["now-showing", "coming-soon", "archive", "about"];
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    function updateActiveNav() {
+      // If scrolled to bottom, highlight the last section (About)
+      const atBottom = (window.innerHeight + window.scrollY) >= (document.body.scrollHeight - 2);
+      let current;
+      if (atBottom) {
+        current = sections[sections.length - 1];
+      } else {
+        current = sections[0];
+        sections.forEach(id => {
+          const el = document.getElementById(id);
+          if (el && !el.hidden && el.getBoundingClientRect().top <= 100) current = id;
+        });
+      }
+      navLinks.forEach(a => {
+        a.classList.toggle("active", a.getAttribute("href") === "#" + current);
+      });
+    }
+
+    window.addEventListener("scroll", updateActiveNav, { passive: true });
+    updateActiveNav();
+  </script>
+
+</body>
+</html>

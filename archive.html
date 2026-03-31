@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Archive — Movies in the Barn</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/favicon.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav-inner">
+      <a href="index.html" class="logo-link">
+        <img src="images/logo.png" alt="Movies in the Barn" class="logo" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Now Showing</a></li>
+        <li><a href="lineup.html" class="nav-link">Full Lineup</a></li>
+        <li><a href="archive.html" class="nav-link active">Archive</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+      <button class="mode-toggle" id="mode-toggle" aria-label="Toggle fun mode" aria-pressed="false"
+              onclick="setViewMode(getViewMode() === 'fun' ? 'boring' : 'fun')">
+        <span class="mode-toggle-label mode-toggle-label--boring">&#9734;</span>
+        <span class="mode-toggle-label mode-toggle-label--fun">&#9733;</span>
+      </button>
+      <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="page-hero-text">
+        <h1 class="page-title">Previous <em>Screenings</em></h1>
+        <p class="page-subtitle" id="archive-count"><!-- injected --></p>
+      </div>
+      <div class="page-bubble page-bubble--right" aria-hidden="true"></div>
+    </section>
+
+    <!-- Search & filter bar -->
+    <div class="search-bar-wrap">
+      <div class="search-bar">
+        <input
+          type="search"
+          id="search-input"
+          class="search-input"
+          placeholder="Search by title, director, cast, genre, or release year…"
+          aria-label="Search films"
+        />
+        <div class="filter-pills" id="year-filters">
+          <!-- injected by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <section class="archive-section" id="archive-container">
+      <!-- injected by JS -->
+    </section>
+
+    <p class="no-results hidden" id="no-results">No films found matching your search.</p>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Follow us on Instagram <a href="https://instagram.com/moviesinthebarn" target="_blank">@moviesinthebarn</a></p>
+    <p class="footer-sub">Movies in the Barn is curated by Dylan Weaver.</p>
+  </footer>
+
+  <script src="events.js"></script>
+  <script src="movie-meta.js"></script>
+  <script src="calendar.js"></script>
+  <script>
+    // Merge TMDB metadata into events
+    EVENTS.forEach(e => {
+      const m = MOVIE_META[e.title];
+      if (m) Object.assign(e, m);
+    });
+
+    const CURRENT_YEAR = 2026;
+    const today = new Date();
+    today.setHours(0,0,0,0);
+
+    // Past events only
+    const pastEvents = EVENTS
+      .filter(e => new Date(e.date + "T00:00:00") < today)
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    // Update subtitle
+    document.getElementById("archive-count").textContent =
+      `${pastEvents.length} films screened since 2021`;
+
+    // Build year filter pills
+    const years = [...new Set(pastEvents.map(e => e.year))].sort((a,b)=>b-a);
+    let activeYear = "all";
+    const pillContainer = document.getElementById("year-filters");
+
+    function renderPills() {
+      pillContainer.innerHTML = [
+        { label: "All Years", val: "all" },
+        ...years.map(y => ({ label: String(y), val: y }))
+      ].map(p => `
+        <button class="pill ${activeYear == p.val ? 'pill--active' : ''}"
+                data-year="${p.val}">${p.label}</button>
+      `).join("");
+
+      pillContainer.querySelectorAll(".pill").forEach(btn => {
+        btn.addEventListener("click", () => {
+          activeYear = btn.dataset.year === "all" ? "all" : parseInt(btn.dataset.year);
+          renderPills();
+          renderArchive();
+        });
+      });
+    }
+
+    function renderArchive() {
+      const query = document.getElementById("search-input").value.toLowerCase().trim();
+
+      let filtered = pastEvents.filter(e => {
+        const matchYear = activeYear === "all" || e.year === activeYear;
+        const matchQuery = !query ||
+          e.title.toLowerCase().includes(query) ||
+          e.theme.toLowerCase().includes(query) ||
+          e.month.toLowerCase().includes(query) ||
+          String(e.releaseYear).includes(query) ||
+          (e.genres || []).some(g => g.toLowerCase().includes(query)) ||
+          (e.director || "").toLowerCase().includes(query) ||
+          (e.cast || []).some(c => c.toLowerCase().includes(query));
+        return matchYear && matchQuery;
+      });
+
+      const container = document.getElementById("archive-container");
+      const noResults = document.getElementById("no-results");
+
+      if (filtered.length === 0) {
+        container.innerHTML = "";
+        noResults.classList.remove("hidden");
+        return;
+      }
+      noResults.classList.add("hidden");
+
+      // Group by year, then month
+      const byYear = {};
+      filtered.forEach(e => {
+        if (!byYear[e.year]) byYear[e.year] = {};
+        const key = e.month + "||" + e.theme;
+        if (!byYear[e.year][key]) byYear[e.year][key] = [];
+        byYear[e.year][key].push(e);
+      });
+
+      let html = "";
+      Object.keys(byYear).sort((a,b)=>b-a).forEach(year => {
+        html += `<div class="archive-year"><h2 class="archive-year-heading">${year}</h2>`;
+        Object.entries(byYear[year]).forEach(([key, events]) => {
+          const [month, theme] = key.split("||");
+          html += `
+            <div class="archive-month-block">
+              <div class="archive-month-header">
+                <span class="archive-pill archive-pill--month">${month}</span>
+                <span class="archive-pill archive-pill--theme">${theme}</span>
+              </div>
+              <div class="archive-films">
+                ${events.map(e => buildArchiveRow(e)).join("")}
+              </div>
+            </div>
+          `;
+        });
+        html += `</div>`;
+      });
+
+      container.innerHTML = html;
+    }
+
+    // Build a compact archive row
+    function buildArchiveRow(e) {
+      const d = new Date(e.date + "T00:00:00");
+      const dateStr = d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+      return `
+        <div class="archive-row">
+          ${e.posterUrl
+            ? `<img src="${e.posterUrl}" alt="${e.title}" class="archive-poster" loading="lazy" />`
+            : `<div class="archive-poster archive-poster--placeholder"><span>🎬</span></div>`
+          }
+          <div class="archive-row-info">
+            <h3 class="archive-title">${e.title}</h3>
+            <p class="archive-meta">${e.releaseYear} · ${e.runtime} · ${e.rating}</p>
+            ${(e.genres && e.genres.length) ? `<p class="archive-genres" hidden>${e.genres.join(" · ")}</p>` : ""}
+            <p class="archive-date">${dateStr}</p>
+            <p class="archive-desc">${e.description}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    // Init
+    renderPills();
+    renderArchive();
+
+    document.getElementById("search-input").addEventListener("input", renderArchive);
+  </script>
+
+<script>
+document.querySelector(".nav-toggle").addEventListener("click", function() {
+  document.querySelector(".nav-links").classList.toggle("open");
+});
+var savedMode = getViewMode();
+var toggleBtn = document.getElementById("mode-toggle");
+if (toggleBtn) toggleBtn.setAttribute("aria-pressed", savedMode === "fun");
+</script>
+</body>
+</html>
