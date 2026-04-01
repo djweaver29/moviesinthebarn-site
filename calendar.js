@@ -74,19 +74,19 @@ function googleCalURL(event) {
 // Format: "x% y%" — x pans left/right, y pans up/down.
 const POSTER_PAN = {
   "Eephus":                              "center 25%",
-  "Dazed and Confused":                  "55% center",
-  "The Awful Truth":                     "center 30%",
+  "Dazed and Confused":                  "100% center",
+  "The Awful Truth":                     "85% 30%",
   "Before Midnight":                     "center 25%",
-  "Chronicle":                           "center 25%",
-  "Sky High":                            "40% 30%",
+  "Chronicle":                           "20% 25%",
+  "Sky High":                            "27% 30%",
   "Robin Hood":                          "center center",
   "The Princess Bride":                  "center center",
   "Mission: Impossible - Ghost Protocol":"center 38%",
   "Annie Get Your Gun":                  "40% 25%",
   "Exam":                                "55% 30%",
-  "RED":                                 "center 25%",
+  "RED":                                 "30% 25%",
   "Seven Brides for Seven Brothers":     "center 25%",
-  "Gattaca":                             "40% 30%",
+  "Gattaca":                             "10% center",
   "BlackBerry":                          "45% 25%",
   "Steve Jobs":                          "40% 30%",
 };
@@ -184,7 +184,7 @@ function buildComingSoonRow(e) {
   return `
     <div class="archive-row" data-film="${filmData}" onclick="openFilmModal(this)" style="cursor:pointer;">
       ${e.posterUrl
-        ? `<img src="${e.posterUrl}" alt="${e.title}" class="archive-poster" loading="lazy" />`
+        ? `<img src="${e.posterUrl}" alt="${e.title}" class="archive-poster" loading="lazy" style="object-position:${POSTER_PAN[e.title] || 'center center'}" />`
         : `<div class="archive-poster archive-poster--placeholder"><span>🎬</span></div>`
       }
       <div class="archive-row-info">

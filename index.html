@@ -216,7 +216,7 @@
       return `
         <div class="archive-row" data-film="${filmData}" onclick="openFilmModal(this)" style="cursor:pointer;">
           ${e.posterUrl
-            ? `<img src="${e.posterUrl}" alt="${e.title}" class="archive-poster" loading="lazy" />`
+            ? `<img src="${e.posterUrl}" alt="${e.title}" class="archive-poster" loading="lazy" style="object-position:${POSTER_PAN[e.title] || 'center center'}" />`
             : `<div class="archive-poster archive-poster--placeholder"><span>🎬</span></div>`
           }
           <div class="archive-row-info">
