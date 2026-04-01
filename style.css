@@ -62,7 +62,7 @@ em { font-style: italic; }
 .logo-link { display: flex; align-items: center; flex-shrink: 0; background: transparent; }
 /* Nav logo is invisible — hero logo takes its place. Fades in only after hero scrolls off. */
 .logo {
-  height: 58px;
+  height: 44px;
   width: auto;
   background: transparent;
   opacity: 0;
@@ -138,7 +138,7 @@ em { font-style: italic; }
 
 .hero-logo-wrap {
   position: sticky;
-  top: 11px;        /* centers 58px logo in 80px nav: (80-58)/2 */
+  top: 18px;        /* centers 44px logo in 80px nav: (80-44)/2 */
   z-index: 110;     /* same as sticky nav */
   margin: 0 auto 1.5rem;
   background: transparent;
@@ -146,7 +146,7 @@ em { font-style: italic; }
 }
 
 .hero-logo {
-  height: 320px;
+  height: 240px;
   width: auto;
   max-width: 900px;
   background: transparent;
@@ -1042,8 +1042,8 @@ em { font-style: italic; }
   .film-bubble-card--featured .film-bubble-title { font-size: 0.95rem; }
 
   .page-bubble { width: 200px; height: 200px; }
-  .hero-logo { height: 160px; }
-  .hero-logo-wrap.is-stuck .hero-logo { transform: scale(0.3625); } /* 58 / 160 */
+  .hero-logo { height: 120px; }
+  .hero-logo-wrap.is-stuck .hero-logo { transform: scale(0.3667); } /* 44 / 120 */
 
   .archive-row {
     grid-template-columns: 52px 1fr;

@@ -328,15 +328,15 @@
     const heroText     = heroSection.querySelector(".hero-text");
     const navLogo      = document.querySelector(".site-header .logo");
 
-    const logoFullHeight = 320;
-    const logoNavHeight  = 58;
+    const logoFullHeight = 240;
+    const logoNavHeight  = 44;
     const minScale       = logoNavHeight / logoFullHeight;
 
     // The hero logo shrinks over this scroll distance
     const shrinkRange = logoFullHeight * 0.6;
 
     // Scroll-Y where the sticky logo first touches its top:11px stop
-    const stickyEngageY = heroLogoWrap.getBoundingClientRect().top + window.scrollY - 11;
+    const stickyEngageY = heroLogoWrap.getBoundingClientRect().top + window.scrollY - 18;
 
     function updateLogo() {
       const scrolled = window.scrollY - stickyEngageY;
