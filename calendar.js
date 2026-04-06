@@ -245,7 +245,24 @@ function initFilmModal() {
   overlay.setAttribute("role", "dialog");
   overlay.innerHTML = `
     <div class="film-modal" id="film-modal-box">
-      <button class="film-modal-close" onclick="closeFilmModal()" aria-label="Close">&times;</button>
+      <div class="film-modal-actions">
+        <div class="film-modal-share-wrap">
+          <button class="film-modal-action-btn" onclick="toggleShareDropdown()" aria-label="Share">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+          <div class="film-modal-share-dropdown hidden" id="share-dropdown">
+            <button class="share-option" onclick="shareModalLink()">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8.5a3.5 3.5 0 0 0 5 0l2-2a3.5 3.5 0 0 0-5-5l-1 1"/><path d="M9.5 7.5a3.5 3.5 0 0 0-5 0l-2 2a3.5 3.5 0 0 0 5 5l1-1"/></svg>
+              <span id="share-link-label">Copy link</span>
+            </button>
+            <button class="share-option" onclick="shareModalImage()">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="12" height="12" rx="2"/><circle cx="5.5" cy="5.5" r="1"/><path d="M14 10l-3.3-3.3a1 1 0 0 0-1.4 0L2 14"/></svg>
+              Save image
+            </button>
+          </div>
+        </div>
+        <button class="film-modal-action-btn" onclick="closeFilmModal()" aria-label="Close">&times;</button>
+      </div>
       <div class="film-modal-inner">
         <div class="film-modal-img" id="film-modal-img"></div>
         <div class="film-modal-content">
@@ -417,6 +434,259 @@ function openFilmModal(card) {
 
   // Update URL hash for sharing
   history.replaceState(null, "", "#" + filmSlug(e.title));
+}
+
+// ── Share dropdown ──
+
+function toggleShareDropdown() {
+  var dd = document.getElementById("share-dropdown");
+  if (dd) dd.classList.toggle("hidden");
+}
+
+document.addEventListener("click", function(ev) {
+  if (!ev.target.closest(".film-modal-share-wrap")) {
+    var dd = document.getElementById("share-dropdown");
+    if (dd) dd.classList.add("hidden");
+  }
+});
+
+// ── Share: copy link ──
+
+function shareModalLink() {
+  var url = window.location.href;
+
+  function onCopied() {
+    var label = document.getElementById("share-link-label");
+    if (label) {
+      label.textContent = "Copied!";
+      setTimeout(function() { label.textContent = "Copy link"; }, 1800);
+    }
+  }
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(onCopied).catch(function() {
+      fallbackCopy(url);
+      onCopied();
+    });
+  } else {
+    fallbackCopy(url);
+    onCopied();
+  }
+}
+
+function fallbackCopy(text) {
+  var ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.cssText = "position:fixed;left:-9999px;top:-9999px";
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  document.execCommand("copy");
+  document.body.removeChild(ta);
+}
+
+// ── Share: download as Instagram-optimized image ──
+
+function shareModalImage() {
+  var overlay = document.getElementById("film-modal-overlay");
+  if (!overlay || !overlay.classList.contains("is-open")) return;
+
+  // Gather data from the live modal DOM
+  var title = document.getElementById("film-modal-title").textContent;
+  var dateText = document.getElementById("film-modal-date").textContent;
+  var theme = document.getElementById("film-modal-theme").textContent;
+  var meta = document.getElementById("film-modal-meta").textContent;
+  var desc = document.getElementById("film-modal-desc").textContent;
+  var imgEl = document.querySelector("#film-modal-img img");
+
+  var W = 1080, H = 1350; // Instagram 4:5
+
+  var canvas = document.createElement("canvas");
+  canvas.width = W;
+  canvas.height = H;
+  var ctx = canvas.getContext("2d");
+
+  // Background
+  ctx.fillStyle = "#f9efdc";
+  ctx.fillRect(0, 0, W, H);
+
+  // Layout constants
+  var pad = 90;
+  var textW = W - pad * 2;
+  var posterSize = 480;
+  // Font sizes — scaled ~3x from modal CSS sizes, then +25%
+  var dateSize = 35;
+  var titleSize = title.length > 30 ? 68 : 80;
+  var themeSize = 40;
+  var metaSize = 35;
+  var descSize = 38;
+
+  // Font definitions for metric measurement
+  var dateFont  = "500 " + dateSize  + "px 'Quicksand', sans-serif";
+  var titleFont = "600 " + titleSize + "px 'Quicksand', sans-serif";
+  var themeFont = "italic 400 " + themeSize + "px 'Quicksand', sans-serif";
+  var metaFont  = "400 " + metaSize  + "px 'Quicksand', sans-serif";
+  var descFont  = "300 " + descSize  + "px 'Quicksand', sans-serif";
+
+  // Measure actual ascent/descent for each font so gaps are visually uniform
+  function fontMetrics(font, sample) {
+    ctx.font = font;
+    var m = ctx.measureText(sample);
+    return { a: m.actualBoundingBoxAscent, d: m.actualBoundingBoxDescent };
+  }
+  var mDate  = fontMetrics(dateFont,  "TUESDAY");
+  var mTitle = fontMetrics(titleFont, "Eephus Mg");
+  var mTheme = fontMetrics(themeFont, "April Mg");
+  var mMeta  = fontMetrics(metaFont,  "2024 Mg");
+  var mDesc  = fontMetrics(descFont,  "Grown Mg");
+
+  // Uniform visual gap between bottom of one element and top of the next
+  var gap = 30;
+  var gapAfterPoster = 60;
+
+  // Baseline-to-baseline spacing = prev descent + gap + next ascent
+  var dateToTitle = mDate.d  + gap + mTitle.a;
+  var titleLH     = mTitle.d + gap + mTitle.a;  // multi-line title
+  var titleToTheme = mTitle.d + gap + mTheme.a;
+  var themeToMeta  = mTheme.d + gap + mMeta.a;
+  var metaToDesc   = mMeta.d  + gap + mDesc.a;
+  var descLH       = Math.round(descSize * 1.45);  // line-height within description
+
+  // Pre-measure title and description line counts
+  ctx.font = titleFont;
+  var titleLines = wrapText(ctx, title, textW);
+  ctx.font = descFont;
+  var descLines = wrapText(ctx, desc, textW);
+  var maxDescLines = Math.min(descLines.length, 10);
+
+  // Calculate total content height from first baseline to last baseline + descent
+  var textHeight = dateToTitle
+    + (titleLines.length - 1) * titleLH + titleToTheme
+    + themeToMeta
+    + metaToDesc
+    + (maxDescLines - 1) * descLH;
+  // Add ascent of first element and descent of last for full bounding box
+  var totalHeight = posterSize + gapAfterPoster + mDate.a + textHeight + mDesc.d;
+  var topY = Math.max(pad, (H - totalHeight) / 2);
+
+  var posterCY = topY + posterSize / 2;
+  var posterCX = W / 2;
+
+  function drawContent() {
+    // Poster circle
+    if (imgEl && imgEl.complete && imgEl.naturalWidth) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(posterCX, posterCY, posterSize / 2, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.clip();
+
+      var pan = imgEl.style.objectPosition || "center center";
+      var parts = pan.split(/\s+/);
+      var parsePos = function(val, size, imgDim) {
+        if (val === "center") return (imgDim - size) / 2;
+        if (val.endsWith("%")) return (parseFloat(val) / 100) * (imgDim - size);
+        return 0;
+      };
+
+      var natW = imgEl.naturalWidth, natH = imgEl.naturalHeight;
+      var scale = Math.max(posterSize / natW, posterSize / natH);
+      var drawW = natW * scale, drawH = natH * scale;
+      var offX = parsePos(parts[0], posterSize, drawW);
+      var offY = parsePos(parts[1] || "center", posterSize, drawH);
+
+      ctx.drawImage(imgEl, posterCX - posterSize / 2 - offX, posterCY - posterSize / 2 - offY, drawW, drawH);
+      ctx.restore();
+    } else {
+      ctx.fillStyle = "#726a62";
+      ctx.beginPath();
+      ctx.arc(posterCX, posterCY, posterSize / 2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Text — all left-aligned, positioned by baseline
+    ctx.textAlign = "left";
+    // First baseline: poster bottom + gap + date ascent
+    var y = topY + posterSize + gapAfterPoster + mDate.a;
+
+    // Date
+    ctx.fillStyle = "#cb5728";
+    ctx.font = dateFont;
+    ctx.letterSpacing = "3px";
+    ctx.fillText(dateText.toUpperCase(), pad, y);
+    ctx.letterSpacing = "0px";
+    y += dateToTitle;
+
+    // Title
+    ctx.fillStyle = "#2a2420";
+    ctx.font = titleFont;
+    for (var i = 0; i < titleLines.length; i++) {
+      ctx.fillText(titleLines[i], pad, y);
+      y += (i < titleLines.length - 1) ? titleLH : titleToTheme;
+    }
+
+    // Theme
+    ctx.fillStyle = "#cb5728";
+    ctx.font = themeFont;
+    ctx.fillText(theme, pad, y);
+    y += themeToMeta;
+
+    // Meta
+    ctx.fillStyle = "#726a62";
+    ctx.font = metaFont;
+    ctx.fillText(meta, pad, y);
+    y += metaToDesc;
+
+    // Description
+    ctx.fillStyle = "rgba(42, 36, 32, 0.8)";
+    ctx.font = descFont;
+    for (var j = 0; j < maxDescLines; j++) {
+      var line = descLines[j];
+      if (j === maxDescLines - 1 && j < descLines.length - 1) line += "\u2026";
+      ctx.fillText(line, pad, y);
+      y += descLH;
+    }
+
+    // Download
+    canvas.toBlob(function(blob) {
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url;
+      a.download = title.replace(/[^a-zA-Z0-9]+/g, "_") + "_MITB.jpg";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, "image/jpeg", 0.92);
+  }
+
+  // If poster image exists but isn't loaded from canvas context (CORS), draw it
+  if (imgEl && imgEl.src && !imgEl.complete) {
+    var tempImg = new Image();
+    tempImg.crossOrigin = "anonymous";
+    tempImg.onload = function() { imgEl = tempImg; drawContent(); };
+    tempImg.onerror = function() { imgEl = null; drawContent(); };
+    tempImg.src = imgEl.src;
+  } else {
+    drawContent();
+  }
+}
+
+function wrapText(ctx, text, maxWidth) {
+  var words = text.split(" ");
+  var lines = [];
+  var line = "";
+  for (var i = 0; i < words.length; i++) {
+    var test = line ? line + " " + words[i] : words[i];
+    if (ctx.measureText(test).width > maxWidth && line) {
+      lines.push(line);
+      line = words[i];
+    } else {
+      line = test;
+    }
+  }
+  if (line) lines.push(line);
+  return lines;
 }
 
 function closeFilmModal() {
