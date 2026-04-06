@@ -13,7 +13,10 @@
       "Bash(curl -s \"https://www.justwatch.com/us/movie/exam\")",
       "Bash(curl -s \"https://www.justwatch.com/us/movie/the-thing\")",
       "Bash(curl -s \"https://www.justwatch.com/us/movie/the-beguiled\")",
-      "Bash(ls \"X:/Projects/Movies in the Barn/2026/site/images/favicon\"*)"
+      "Bash(ls \"X:/Projects/Movies in the Barn/2026/site/images/favicon\"*)",
+      "Bash(grep -rn \"share\\\\|generate\\\\|image\\\\|canvas\\\\|html2canvas\\\\|dom-to-image\" '/X/Projects/Movies in the Barn/moviesinthebarn-site/' --include=*.html --include=*.js)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(find '/x/Projects/Movies in the Barn/moviesinthebarn-site' -maxdepth 2 -type f \\\\\\(-name *.sh -o -name *.bat -o -name *.cmd \\\\\\))"
     ]
   }
 }
