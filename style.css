@@ -819,10 +819,17 @@ em { font-style: italic; }
   transform: translateY(0) scale(1);
 }
 
-.film-modal-close {
+.film-modal-actions {
   position: absolute;
   top: 1.25rem;
   right: 1.25rem;
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  z-index: 2;
+}
+
+.film-modal-action-btn {
   background: color-mix(in srgb, var(--stone) 15%, transparent);
   border: none;
   width: 38px;
@@ -838,9 +845,57 @@ em { font-style: italic; }
   justify-content: center;
 }
 
-.film-modal-close:hover {
+.film-modal-action-btn:hover {
   background: color-mix(in srgb, var(--stone) 28%, transparent);
   color: var(--ink);
+}
+
+.film-modal-share-wrap {
+  position: relative;
+}
+
+.film-modal-share-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 8px 30px color-mix(in srgb, var(--ink) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--stone) 12%, transparent);
+  min-width: 160px;
+  overflow: hidden;
+  animation: dropIn 0.15s ease;
+  z-index: 10;
+}
+
+.share-option {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.65rem 1rem;
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.12s;
+  text-align: left;
+}
+
+.share-option:hover {
+  background: var(--cream);
+  color: var(--rust);
+}
+
+.share-option svg {
+  flex-shrink: 0;
+  color: var(--stone);
+}
+
+.share-option:hover svg {
+  color: var(--rust);
 }
 
 .film-modal-inner {
@@ -948,6 +1003,7 @@ em { font-style: italic; }
   background: var(--rust);
   color: var(--cream);
 }
+
 
 @media (max-width: 560px) {
   .film-modal { padding: 1.75rem 1.25rem; border-radius: 1.5rem; }
