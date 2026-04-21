@@ -2,8 +2,6 @@
 // calendar.js — "Add to Calendar" helpers + film card builder
 // ============================================================
 
-function padZ(n) { return String(n).padStart(2, "0"); }
-
 function toICSDate(dateStr, timeStr) {
   // dateStr: "2026-04-07", timeStr: "19:00"
   const [y, m, d] = dateStr.split("-");
@@ -68,7 +66,7 @@ function googleCalURL(event) {
   return `https://calendar.google.com/calendar/render?${params}`;
 }
 
-// ── Film card builder (used by index.html and lineup.html) ──
+// ── Film card builder ──
 
 // Per-film object-position overrides to center the subject in the circular crop.
 // Format: "x% y%" — x pans left/right, y pans up/down.
@@ -199,12 +197,37 @@ function buildComingSoonRow(e) {
 // ── View mode toggle ──
 
 function getViewMode() {
-  return localStorage.getItem("mitb-mode") || "boring";
+  var saved = localStorage.getItem("mitb-mode");
+  if (saved) return saved;
+  // New visitors: default to "fun" on mobile, "boring" on desktop.
+  var isMobile = window.matchMedia && window.matchMedia("(max-width: 720px)").matches;
+  return isMobile ? "fun" : "boring";
+}
+
+function showModeToast(mode) {
+  var toast = document.getElementById("mode-toast");
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "mode-toast";
+    toast.className = "mode-toast";
+    document.body.appendChild(toast);
+  }
+  toast.textContent = mode === "fun" ? "Fun mode enabled" : "Fun mode disabled";
+  // Restart the animation by removing/re-adding the visible class.
+  toast.classList.remove("mode-toast--visible");
+  // Force reflow so the class re-add triggers the transition.
+  void toast.offsetWidth;
+  toast.classList.add("mode-toast--visible");
+  clearTimeout(showModeToast._t);
+  showModeToast._t = setTimeout(function() {
+    toast.classList.remove("mode-toast--visible");
+  }, 1600);
 }
 
 function setViewMode(mode) {
   localStorage.setItem("mitb-mode", mode);
   document.body.setAttribute("data-mode", mode);
+  showModeToast(mode);
 
   // Reset inline transforms/z-index on all cards when leaving fun mode
   if (mode === "boring") {
@@ -290,19 +313,6 @@ function filmSlug(title) {
 }
 
 function openFilmBySlug(slug) {
-  const card = document.querySelector(
-    `.film-card[data-film]`
-  );
-  // Search all cards for a matching title
-  const cards = document.querySelectorAll(".film-card[data-film]");
-  for (const c of cards) {
-    const e = JSON.parse(c.dataset.film);
-    if (filmSlug(e.title) === slug) {
-      openFilmModal(c);
-      return true;
-    }
-  }
-  // Also check archive rows — they don't have data-film, so try EVENTS directly
   const match = EVENTS.find(e => filmSlug(e.title) === slug);
   if (match) {
     openFilmModalFromData(match);
@@ -412,19 +422,9 @@ function openFilmModal(card) {
       </div>
     `;
   } else {
-    const formats = [];
-    if (e.has4K) formats.push("4K");
-    if (e.hasBluray) formats.push("Blu-ray");
-    if (e.hasDVD) formats.push("DVD");
-    const borrowLabel = formats.length ? "Borrow " + formats.join(" / ") : "";
-    const mailto = "mailto:moviesinthebarn@gmail.com?subject=" +
-      encodeURIComponent("Request to borrow " + e.title);
-
     calEl.innerHTML = `
-      <p class="film-modal-cal-label">Where to watch</p>
       <div class="film-modal-cal-options">
-        <a href="${justwatchUrl(e.title)}" target="_blank" class="btn-cal">Streaming</a>
-        ${borrowLabel ? `<a href="${mailto}" class="btn-cal btn-cal--outline">${borrowLabel}</a>` : ""}
+        <a href="film.html?title=${filmSlug(e.title)}" class="btn-cal">Additional info</a>
       </div>
     `;
   }
@@ -700,18 +700,6 @@ function closeFilmModal() {
 
 document.addEventListener("keydown", function(ev) {
   if (ev.key === "Escape") closeFilmModal();
-});
-
-function toggleCalDropdown(uid) {
-  const el = document.getElementById(uid);
-  el.classList.toggle("hidden");
-}
-
-// Close dropdowns on outside click
-document.addEventListener("click", e => {
-  if (!e.target.closest(".cal-dropdown-wrap")) {
-    document.querySelectorAll(".cal-dropdown").forEach(d => d.classList.add("hidden"));
-  }
 });
 
 // Open film modal from URL hash on page load
@@ -1028,10 +1016,22 @@ window.addEventListener("hashchange", function() {
 
   if (hasPointer) {
     // ── Hover promotion only (pointer devices) ──
-    document.addEventListener("mouseenter", function(ev) {
+    // Use mouseover (bubbles) rather than capture-phase mouseenter so the
+    // handler reliably fires regardless of which child is actually hovered.
+    var lastPromoted = null;
+    document.addEventListener("mouseover", function(ev) {
       var card = ev.target.closest(".film-bubble-card");
-      if (card) promote(card);
-    }, true);
+      if (!card || card === lastPromoted) return;
+      lastPromoted = card;
+      promote(card);
+    });
+    document.addEventListener("mouseout", function(ev) {
+      // Reset when leaving the card entirely so re-entering re-promotes.
+      var card = ev.target.closest(".film-bubble-card");
+      if (!card) return;
+      var to = ev.relatedTarget;
+      if (!to || !card.contains(to)) lastPromoted = null;
+    });
   } else {
     // ── Scroll promotion only (touch devices) ──
     var currentScrollCard = null;

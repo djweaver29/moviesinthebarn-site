@@ -16,7 +16,12 @@
       "Bash(ls \"X:/Projects/Movies in the Barn/2026/site/images/favicon\"*)",
       "Bash(grep -rn \"share\\\\|generate\\\\|image\\\\|canvas\\\\|html2canvas\\\\|dom-to-image\" '/X/Projects/Movies in the Barn/moviesinthebarn-site/' --include=*.html --include=*.js)",
       "mcp__Claude_Preview__preview_start",
-      "Bash(find '/x/Projects/Movies in the Barn/moviesinthebarn-site' -maxdepth 2 -type f \\\\\\(-name *.sh -o -name *.bat -o -name *.cmd \\\\\\))"
+      "Bash(find '/x/Projects/Movies in the Barn/moviesinthebarn-site' -maxdepth 2 -type f \\\\\\(-name *.sh -o -name *.bat -o -name *.cmd \\\\\\))",
+      "Bash(node -e \":*)",
+      "WebFetch(domain:boxd.it)",
+      "Bash(curl -s -o /dev/null -w '__TRACKED_VAR__ %{redirect_url}\\\\n' https://boxd.it/__TRACKED_VAR__)",
+      "WebFetch(domain:letterboxd.com)",
+      "Bash(curl -s -A \"Mozilla/5.0\" \"https://letterboxd.com/njh20/film/daddy-longlegs/1/\")"
     ]
   }
 }
