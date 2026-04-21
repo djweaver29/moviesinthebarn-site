@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
   <title>Movies in the Barn</title>
   <link rel="icon" type="image/png" href="images/favicon.png" />
   <link rel="apple-touch-icon" href="images/favicon.png" />
@@ -80,7 +81,6 @@
             <h2 class="section-label">About <em>Movies in the Barn</em></h2>
             <div class="about-body">
               <p>Movies in the Barn is a twice-monthly screening series hosted and curated by <strong>Dylan Weaver</strong>.</p>
-              <p>Each month pairs two films around a shared theme — a conversation between movies that might span decades, genres, and styles, but always find something to say to each other.</p>
               <p>Screenings are held on Tuesdays at 7pm, twice a month.</p>
               <a href="https://instagram.com/moviesinthebarn" target="_blank" class="instagram-link">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
@@ -93,6 +93,10 @@
     </section>
 
   </main>
+
+  <footer class="site-footer">
+    <p class="footer-credit">Web design by <a href="https://instagram.com/djweaver29" target="_blank">Dylan</a> &amp; <a href="https://claude.ai" target="_blank">Claude</a></p>
+  </footer>
 
 
   <script src="events.js"></script>
@@ -176,10 +180,7 @@
           const [month, theme] = key.split("||");
           return `
             <div class="archive-month-block">
-              <div class="archive-month-header">
-                <span class="archive-pill archive-pill--month">${month}</span>
-                <span class="archive-pill archive-pill--theme">${theme}</span>
-              </div>
+              <h4 class="archive-month-heading">${month} <span class="archive-month-theme">${theme}</span></h4>
               <div class="archive-films">
                 ${events.map(buildComingSoonRow).join("")}
               </div>
@@ -272,8 +273,12 @@
       }
       noResults.classList.add("hidden");
 
+      // When filtering by a single year, show chronologically (oldest first).
+      // Otherwise keep the default reverse-chronological ordering.
+      const ordered = activeYear === "all" ? filtered : filtered.slice().reverse();
+
       const byYear = {};
-      filtered.forEach(e => {
+      ordered.forEach(e => {
         if (!byYear[e.year]) byYear[e.year] = {};
         const key = e.month + "||" + e.theme;
         if (!byYear[e.year][key]) byYear[e.year][key] = [];
@@ -287,10 +292,7 @@
             const [month, theme] = key.split("||");
             return `
               <div class="archive-month-block">
-                <div class="archive-month-header">
-                  <span class="archive-pill archive-pill--month">${month}</span>
-                  <span class="archive-pill archive-pill--theme">${theme}</span>
-                </div>
+                <h4 class="archive-month-heading">${month} <span class="archive-month-theme">${theme}</span></h4>
                 <div class="archive-films">
                   ${events.map(buildArchiveRow).join("")}
                 </div>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Movies in the Barn</title>
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/favicon.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav-inner">
+      <a href="index.html" class="logo-link">
+        <img src="images/logo.png" alt="Movies in the Barn" class="logo" style="opacity:1;pointer-events:auto" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#now-showing" class="nav-link">Now Showing</a></li>
+        <li><a href="index.html#coming-soon" class="nav-link">Coming Soon</a></li>
+        <li><a href="index.html#archive" class="nav-link">Archive</a></li>
+        <li><a href="index.html#about" class="nav-link">About</a></li>
+      </ul>
+      <button class="mode-toggle" id="mode-toggle" aria-label="Toggle fun mode" aria-pressed="false"
+              onclick="setViewMode(getViewMode() === 'fun' ? 'boring' : 'fun')">
+        <span class="mode-toggle-label mode-toggle-label--boring">&#9734;</span>
+        <span class="mode-toggle-label mode-toggle-label--fun">&#9733;</span>
+      </button>
+      <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+    </nav>
+  </header>
+
+  <main>
+    <div id="film-page-content">
+      <!-- Rendered by JS -->
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-credit">Web design by <a href="https://instagram.com/djweaver29" target="_blank">Dylan</a> &amp; <a href="https://claude.ai" target="_blank">Claude</a></p>
+  </footer>
+
+<script src="events.js"></script>
+  <script src="movie-meta.js"></script>
+  <script src="reviews.js"></script>
+  <script src="calendar.js"></script>
+  <script src="letterboxd-rss.js"></script>
+  <script>
+    // Merge metadata
+    EVENTS.forEach(function(e) {
+      var m = MOVIE_META[e.title];
+      if (m) Object.assign(e, m);
+    });
+
+    var REVIEW_MAX_CHARS = 400;
+
+    // Resolve film from title param
+    var params = new URLSearchParams(window.location.search);
+    var slug = params.get("title");
+    var film = slug ? EVENTS.find(function(e) { return filmSlug(e.title) === slug; }) : null;
+    var container = document.getElementById("film-page-content");
+
+    if (!film) {
+      document.title = "Film Not Found — Movies in the Barn";
+      container.innerHTML = '<section class="page-hero"><div class="page-hero-text">' +
+        '<h1 class="page-title">Film <em>Not Found</em></h1>' +
+        '<p class="page-subtitle">The film you\'re looking for isn\'t in our archive.</p>' +
+        '</div></section>' +
+        '<div class="film-page-back"><a href="index.html#archive" class="btn-outline">Back to Archive</a></div>';
+    } else {
+      document.title = film.title + " — Movies in the Barn";
+
+      var d = new Date(film.date + "T00:00:00");
+      var dateStr = d.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+      var today = new Date(); today.setHours(0,0,0,0);
+      var isPast = d < today;
+      var pan = POSTER_PAN[film.title] || "center center";
+
+      // Detail line: director, genres, cast
+      var detailParts = [];
+      if (film.director) detailParts.push("Directed by " + film.director);
+      if (film.genres && film.genres.length) detailParts.push(film.genres.join(", "));
+      if (film.cast && film.cast.length) detailParts.push(film.cast.join(", "));
+      var detailStr = detailParts.join(" \u00b7 ");
+
+      // Actions (calendar or watch)
+      var actionsHtml = "";
+      if (!isPast) {
+        actionsHtml = '<p class="film-modal-cal-label">Add to calendar</p>' +
+          '<div class="film-modal-cal-options">' +
+          '<a href="' + googleCalURL(film) + '" target="_blank" class="btn-cal">Google Calendar</a>' +
+          '<button class="btn-cal btn-cal--outline" onclick=\'downloadICS(' + JSON.stringify(film).replace(/'/g, "\\'") + ')\'>Apple / Outlook (.ics)</button>' +
+          '</div>';
+      } else {
+        var formats = [];
+        if (film.has4K) formats.push("4K");
+        if (film.hasBluray) formats.push("Blu-ray");
+        if (film.hasDVD) formats.push("DVD");
+        var borrowLabel = formats.length ? "Borrow " + formats.join(" / ") : "";
+        var mailto = "mailto:moviesinthebarn@gmail.com?subject=" + encodeURIComponent("Request to borrow " + film.title);
+        actionsHtml = '<p class="film-modal-cal-label">Where to watch</p>' +
+          '<div class="film-modal-cal-options">' +
+          '<a href="' + justwatchUrl(film.title) + '" target="_blank" class="btn-cal">Streaming</a>' +
+          (borrowLabel ? '<a href="' + mailto + '" class="btn-cal btn-cal--outline">' + borrowLabel + '</a>' : '') +
+          '</div>';
+      }
+
+      // Hero section
+      var heroHtml = '<section class="film-page-hero">' +
+        '<div class="film-page-hero-inner">' +
+          '<div class="film-page-poster">' +
+            (film.posterUrl
+              ? '<img src="' + film.posterUrl + '" alt="' + film.title + '" style="object-position:' + pan + '" />'
+              : '<span>&#127916;</span>') +
+          '</div>' +
+          '<div class="film-page-info">' +
+            '<p class="film-page-date">' + dateStr + '</p>' +
+            '<h1 class="film-page-title">' + film.title + '</h1>' +
+            '<p class="film-page-theme">' + film.month + ' \u00b7 ' + film.theme + '</p>' +
+            '<p class="film-page-meta">' + film.releaseYear + ' \u00b7 ' + film.runtime + ' \u00b7 ' + film.rating + '</p>' +
+            (detailStr ? '<p class="film-page-detail">' + detailStr + '</p>' : '') +
+            '<p class="film-page-desc">' + film.description + '</p>' +
+            '<div class="film-page-actions">' + actionsHtml + '</div>' +
+          '</div>' +
+        '</div>' +
+      '</section>';
+
+      // Reviews section
+      var reviews = (FILM_REVIEWS[film.title] || []).slice().sort(function(a, b) {
+        return a.name.localeCompare(b.name, undefined, { sensitivity: "base" });
+      });
+      var reviewsHtml = "";
+      if (reviews.length) {
+          var cardsHtml = reviews.map(buildReviewCard).join("");
+
+        reviewsHtml = '<section class="film-page-reviews">' +
+          '<div class="film-page-reviews-inner">' +
+            '<h2 class="film-page-reviews-heading">Reviews</h2>' +
+            '<div class="review-cards">' + cardsHtml + '</div>' +
+          '</div>' +
+        '</section>';
+      }
+
+      container.innerHTML = heroHtml + reviewsHtml;
+
+      // Merge in any new reviews from the Letterboxd RSS feed
+      fetchLetterboxdRSSReviews().then(function(rssByTitle) {
+        var rssReviews = rssByTitle[film.title] || [];
+        if (!rssReviews.length) return;
+
+        // Skip any RSS entry whose URL we already have, OR whose reviewer
+        // already has a stored review for this film — one review per person.
+        var stored = FILM_REVIEWS[film.title] || [];
+        var existingUrls = stored.map(function(r) { return r.letterboxdUrl; });
+        var existingNames = stored.map(function(r) { return r.name.toLowerCase(); });
+        var newReviews = rssReviews.filter(function(r) {
+          return !existingUrls.includes(r.letterboxdUrl)
+              && !existingNames.includes(r.name.toLowerCase());
+        });
+        if (!newReviews.length) return;
+
+        // Find or create the review-cards container
+        var cardsEl = container.querySelector('.review-cards');
+        if (!cardsEl) {
+          var section = document.createElement('section');
+          section.className = 'film-page-reviews';
+          section.innerHTML = '<div class="film-page-reviews-inner"><h2 class="film-page-reviews-heading">Reviews</h2><div class="review-cards"></div></div>';
+          container.appendChild(section);
+          cardsEl = section.querySelector('.review-cards');
+        }
+
+        // Re-render all cards sorted alphabetically so new ones slot in correctly
+        var allReviews = reviews.concat(newReviews).sort(function(a, b) {
+          return a.name.localeCompare(b.name, undefined, { sensitivity: "base" });
+        });
+        cardsEl.innerHTML = allReviews.map(buildReviewCard).join("");
+      });
+    }
+
+    function buildReviewCard(r) {
+      var badges = '';
+      if (r.liked)   badges += '<span class="review-badge review-badge--liked" title="Liked">\u2764</span>';
+      if (r.rewatch) badges += '<span class="review-badge review-badge--rewatch" title="Rewatch">\u21BB</span>';
+
+      var hasText = !!(r.text && r.text.trim());
+      var textBlock = '';
+      var toggleBtn = '';
+      if (hasText) {
+        var textHtml = r.text.split('\n\n').map(function(p) {
+          return '<p>' + p.replace(/\n/g, '<br>') + '</p>';
+        }).join('');
+        var long = r.text.length > REVIEW_MAX_CHARS;
+        var textClass = 'review-card-text' + (long ? ' review-card-text--truncated' : '');
+        textBlock = '<div class="' + textClass + '">' + textHtml + '</div>';
+        toggleBtn = long ? '<button class="review-card-toggle" onclick="toggleReview(this)">Show more</button>' : '';
+      }
+
+      var cardClass = 'review-card' + (hasText ? '' : ' review-card--rating-only');
+
+      return '<div class="' + cardClass + '">' +
+        '<div class="review-card-header">' +
+          '<span class="review-card-name">' + r.name + '</span>' +
+          '<div class="review-card-meta">' +
+            (r.rating ? '<span class="review-card-stars">' + renderStars(r.rating) + '</span>' : '') +
+            (badges   ? '<span class="review-card-badges">' + badges + '</span>' : '') +
+          '</div>' +
+        '</div>' +
+        textBlock +
+        toggleBtn +
+        '<a href="' + r.letterboxdUrl + '" target="_blank" class="review-card-link">View on Letterboxd &#8594;</a>' +
+      '</div>';
+    }
+
+    function toggleReview(btn) {
+      var textEl = btn.previousElementSibling;
+      var expanded = textEl.classList.toggle('review-card-text--expanded');
+      btn.textContent = expanded ? 'Show less' : 'Show more';
+    }
+
+    function renderStars(rating) {
+      var html = "";
+      for (var i = 1; i <= 5; i++) {
+        if (rating >= i) {
+          html += '<span class="star star--full">\u2605</span>';
+        } else if (rating >= i - 0.5) {
+          html += '<span class="star star--half">\u2605</span>';
+        } else {
+          html += '<span class="star star--empty">\u2605</span>';
+        }
+      }
+      return html;
+    }
+  </script>
+
+  <script>
+    document.querySelector(".nav-toggle").addEventListener("click", function() {
+      document.querySelector(".nav-links").classList.toggle("open");
+    });
+    var savedMode = getViewMode();
+    var toggleBtn = document.getElementById("mode-toggle");
+    if (toggleBtn) toggleBtn.setAttribute("aria-pressed", savedMode === "fun");
+  </script>
+</body>
+</html>

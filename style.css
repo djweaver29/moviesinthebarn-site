@@ -181,8 +181,6 @@ em { font-style: italic; }
   color: var(--rust);
 }
 
-/* (decorative hero bubbles removed) */
-
 /* ── Theme banner ── */
 .theme-banner {
   max-width: 1100px;
@@ -194,46 +192,6 @@ em { font-style: italic; }
   position: relative;
   width: 320px;
   height: 265px;
-}
-
-/* ── Theme circles (used in lineup & hero) ── */
-.theme-circle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  font-family: var(--font-display);
-  font-weight: 600;
-  text-align: center;
-  flex-shrink: 0;
-}
-
-.theme-circle--month {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 160px;
-  height: 160px;
-  background: var(--rust);
-  color: var(--cream);
-  font-size: 1.5rem;
-  z-index: 1;
-}
-
-.theme-circle--theme {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 210px;
-  height: 210px;
-  background: var(--stone);
-  color: var(--cream);
-  font-size: 1.05rem;
-  font-style: italic;
-  font-weight: 400;
-  padding: 1.25rem;
-  line-height: 1.3;
-  z-index: 2;
 }
 
 /* ── Film cards (bubble layout) ── */
@@ -465,36 +423,6 @@ em { font-style: italic; }
   margin-top: 0.6rem;
 }
 
-.page-bubble {
-  position: absolute;
-  width: 320px; height: 320px;
-  border-radius: 50%;
-  right: -40px; top: -60px;
-  background: color-mix(in srgb, var(--rust) 10%, transparent);
-  pointer-events: none;
-}
-.page-bubble--right {
-  right: -60px;
-  background: color-mix(in srgb, var(--stone) 12%, transparent);
-}
-
-/* ── Lineup page ── */
-.lineup-section {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 2rem 4rem;
-}
-
-.month-block { margin-bottom: -2rem; }
-.month-block--past { opacity: 0.6; }
-
-.month-header { margin-bottom: 2.5rem; }
-.month-bubble-pair {
-  position: relative;
-  width: 320px;
-  height: 265px;
-}
-
 .month-films {
   display: flex;
   flex-wrap: wrap;
@@ -504,12 +432,6 @@ em { font-style: italic; }
 }
 
 /* ── Search bar ── */
-.search-bar-wrap {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 2rem 2rem;
-}
-
 .search-bar {
   display: flex;
   flex-direction: column;
@@ -561,6 +483,29 @@ em { font-style: italic; }
 
 .filter-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 
+/* ── Mode toggle toast ── */
+.mode-toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translate(-50%, 1rem);
+  background: color-mix(in srgb, var(--ink, #1e1a17) 92%, transparent);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  padding: 0.65rem 1.1rem;
+  border-radius: 999px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 10000;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+.mode-toast--visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
 .pill {
   padding: 0.35rem 0.9rem;
   border-radius: 999px;
@@ -571,17 +516,15 @@ em { font-style: italic; }
   font-size: 0.82rem;
   cursor: pointer;
   transition: background 0.15s, color 0.15s, border-color 0.15s;
+  -webkit-tap-highlight-color: transparent;
 }
-.pill:hover { border-color: var(--rust); color: var(--rust); }
-.pill--active { background: var(--rust); color: var(--cream); border-color: var(--rust); }
+@media (hover: hover) {
+  .pill:hover { border-color: var(--rust); color: var(--rust); }
+}
+.pill--active,
+.pill--active:hover { background: var(--rust); color: var(--cream); border-color: var(--rust); }
 
 /* ── Archive ── */
-.archive-section {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 2rem 4rem;
-}
-
 .archive-year { margin-bottom: 3rem; }
 
 .archive-year-heading {
@@ -596,22 +539,24 @@ em { font-style: italic; }
 
 .archive-month-block { margin-bottom: 2rem; }
 
-.archive-month-header {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  margin-bottom: 0.85rem;
-}
-
-.archive-pill {
-  border-radius: 999px;
-  font-family: var(--font-body);
-  font-size: 0.78rem;
-  padding: 0.3rem 0.85rem;
+.archive-month-heading {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
   font-weight: 400;
+  color: var(--rust);
+  margin: 0 0 0.85rem;
+  line-height: 1.25;
 }
-.archive-pill--month { background: var(--rust); color: var(--cream); }
-.archive-pill--theme { background: var(--stone); color: var(--cream); font-style: italic; }
+.archive-month-theme {
+  font-style: italic;
+  color: var(--stone);
+  font-weight: 300;
+}
+.archive-month-theme::before {
+  content: " — ";
+  color: color-mix(in srgb, var(--stone) 50%, transparent);
+  font-style: normal;
+}
 
 .archive-films { display: flex; flex-direction: column; gap: 0.75rem; }
 
@@ -671,13 +616,6 @@ em { font-style: italic; }
   color: var(--rust);
   margin-top: 0.1rem;
 }
-.archive-desc {
-  font-size: 0.85rem;
-  color: color-mix(in srgb, var(--ink) 70%, transparent);
-  line-height: 1.55;
-  margin-top: 0.3rem;
-}
-
 .no-results {
   max-width: 1100px;
   margin: 2rem auto;
@@ -739,22 +677,6 @@ em { font-style: italic; }
   padding-bottom: 2rem;
 }
 
-.about-bubble {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-}
-.about-bubble--1 {
-  width: 420px; height: 420px;
-  right: -80px; top: -60px;
-  background: color-mix(in srgb, var(--rust) 10%, transparent);
-}
-.about-bubble--2 {
-  width: 220px; height: 220px;
-  right: 220px; bottom: -40px;
-  background: color-mix(in srgb, var(--stone) 10%, transparent);
-}
-
 .about-content { position: relative; z-index: 2; max-width: 560px; }
 
 .about-body {
@@ -808,6 +730,8 @@ em { font-style: italic; }
   background: var(--cream);
   border-radius: 2rem;
   max-width: 700px;
+  max-height: calc(100vh - 3rem);
+  overflow-y: auto;
   width: 100%;
   position: relative;
   padding: 2.5rem;
@@ -1014,40 +938,15 @@ em { font-style: italic; }
 
 /* ── Footer ── */
 .site-footer {
-  position: relative;
-  overflow: hidden;
   border-top: 1px solid color-mix(in srgb, var(--stone) 12%, transparent);
-  padding: 4rem 2rem;
+  padding: 1.25rem 2rem;
   text-align: center;
   color: var(--stone);
   font-size: 0.85rem;
-  line-height: 1.8;
-}
-.site-footer::before {
-  content: "";
-  position: absolute;
-  width: 260px;
-  height: 260px;
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--rust) 6%, transparent);
-  left: -80px;
-  bottom: -100px;
-  pointer-events: none;
-}
-.site-footer::after {
-  content: "";
-  position: absolute;
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--stone) 6%, transparent);
-  right: 10%;
-  top: -60px;
-  pointer-events: none;
 }
 .site-footer a { color: var(--rust); }
 .site-footer a:hover { text-decoration: underline; }
-.footer-sub { font-size: 0.78rem; opacity: 0.7; margin-top: 0.25rem; }
+.footer-credit { font-size: 0.8rem; }
 
 /* ── Responsive ── */
 @media (max-width: 720px) {
@@ -1079,11 +978,6 @@ em { font-style: italic; }
     row-gap: 0.85rem;
   }
 
-  .theme-bubble-row,
-  .month-bubble-pair { width: 245px; height: 205px; }
-  .theme-circle--month { width: 120px; height: 120px; font-size: 1.1rem; }
-  .theme-circle--theme { width: 160px; height: 160px; font-size: 0.88rem; padding: 1rem; }
-
   .film-bubble-card { width: 240px; }
   .film-bubble-stage { width: 240px; height: 260px; }
   .film-bubble-img { width: 215px; height: 215px; left: 12px; top: 20px; }
@@ -1097,7 +991,6 @@ em { font-style: italic; }
   .film-bubble-card--featured .film-bubble-info { width: 150px; height: 150px; }
   .film-bubble-card--featured .film-bubble-title { font-size: 0.95rem; }
 
-  .page-bubble { width: 200px; height: 200px; }
   .hero-logo { height: 120px; }
   .hero-logo-wrap.is-stuck .hero-logo { transform: scale(0.3667); } /* 44 / 120 */
 
@@ -1108,4 +1001,267 @@ em { font-style: italic; }
   .archive-poster, .archive-poster--placeholder { width: 52px; height: 52px; }
 }
 
-/* ── Mobile nav toggle script hook ── */
+/* ── Film page ── */
+.film-page-hero {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 2rem 2rem;
+}
+
+.film-page-hero-inner {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+
+.film-page-poster {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: color-mix(in srgb, var(--stone) 20%, transparent);
+}
+
+.film-page-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.film-page-info {
+  flex: 1;
+  min-width: 0;
+  padding-top: 0.25rem;
+}
+
+.film-page-date {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--rust);
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+}
+
+.film-page-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.15;
+  margin-bottom: 0.4rem;
+}
+
+.film-page-theme {
+  font-size: 1.1rem;
+  color: var(--rust);
+  font-style: italic;
+  margin-bottom: 0.35rem;
+}
+
+.film-page-meta {
+  font-size: 0.85rem;
+  color: var(--stone);
+  letter-spacing: 0.04em;
+  margin-bottom: 0.4rem;
+}
+
+.film-page-detail {
+  font-size: 0.85rem;
+  color: var(--stone);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.film-page-desc {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: color-mix(in srgb, var(--ink) 80%, transparent);
+  margin-bottom: 1.5rem;
+}
+
+.film-page-actions {
+  margin-top: 0.5rem;
+}
+
+.film-page-back {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem 3rem;
+}
+
+/* ── Reviews section ── */
+.film-page-reviews {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem 2rem 4rem;
+  border-top: 1px solid color-mix(in srgb, var(--stone) 12%, transparent);
+}
+
+.film-page-reviews-inner {
+  padding-top: 2rem;
+}
+
+.film-page-reviews-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 300;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+}
+
+.review-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  align-items: start;
+  gap: 1.25rem;
+}
+
+.review-card {
+  background: white;
+  border: 1px solid color-mix(in srgb, var(--stone) 10%, transparent);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: box-shadow 0.18s;
+}
+
+.review-card:hover {
+  box-shadow: 0 4px 20px color-mix(in srgb, var(--ink) 8%, transparent);
+}
+
+.review-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.review-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.review-card-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.review-badge {
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.review-badge--liked {
+  color: var(--rust);
+}
+
+.review-badge--rewatch {
+  color: var(--stone);
+  font-size: 0.95rem;
+}
+
+.review-card-name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.review-card-stars {
+  display: flex;
+  gap: 0.1rem;
+  flex-shrink: 0;
+}
+
+.star {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.star--full {
+  color: var(--rust);
+}
+
+.star--half {
+  color: var(--rust);
+  background: linear-gradient(90deg, var(--rust) 50%, color-mix(in srgb, var(--stone) 25%, transparent) 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.star--empty {
+  color: color-mix(in srgb, var(--stone) 25%, transparent);
+}
+
+.review-card-text {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: color-mix(in srgb, var(--ink) 80%, transparent);
+}
+
+.review-card-text p {
+  margin: 0 0 0.75em;
+}
+
+.review-card-text p:last-child {
+  margin-bottom: 0;
+}
+
+.review-card-text--truncated {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.review-card-text--expanded {
+  display: block;
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+
+.review-card-toggle {
+  background: none;
+  border: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--rust);
+  cursor: pointer;
+  padding: 0;
+  margin-top: 0.4em;
+}
+
+.review-card-toggle:hover {
+  text-decoration: underline;
+}
+
+.review-card-link {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--stone);
+  transition: color 0.15s;
+  margin-top: auto;
+}
+
+.review-card-link:hover {
+  color: var(--rust);
+}
+
+@media (max-width: 720px) {
+  .film-page-hero-inner {
+    flex-direction: column;
+    align-items: center;
+  }
+  .film-page-poster { width: 200px; height: 200px; }
+  .film-page-info { width: 100%; }
+}
+
