@@ -17,29 +17,34 @@ var RSS_SOURCES = [
 ];
 
 // Fetch all configured RSS feeds in parallel and merge their reviews.
-// Returns a promise resolving to { filmTitle: [reviewObject, ...] }
+// Returns a promise resolving to { byTitle: { filmTitle: [reviewObject, ...] },
+//                                    errors:  [{ name, message }] }
 function fetchLetterboxdRSSReviews() {
+  var errors = [];
   var fetches = RSS_SOURCES.map(function(source) {
     return fetchSingleRSSFeed(source).catch(function(err) {
       console.warn('Letterboxd RSS unavailable for ' + source.name + ':', err);
+      errors.push({ name: source.name, message: err && err.message ? err.message : String(err) });
       return {};
     });
   });
 
   return Promise.all(fetches).then(function(results) {
-    var merged = {};
-    results.forEach(function(byTitle) {
-      Object.keys(byTitle).forEach(function(title) {
-        if (!merged[title]) merged[title] = [];
-        merged[title] = merged[title].concat(byTitle[title]);
+    var byTitle = {};
+    results.forEach(function(feed) {
+      Object.keys(feed).forEach(function(title) {
+        if (!byTitle[title]) byTitle[title] = [];
+        byTitle[title] = byTitle[title].concat(feed[title]);
       });
     });
-    return merged;
+    return { byTitle: byTitle, errors: errors };
   });
 }
 
 function fetchSingleRSSFeed(source) {
-  var proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent(source.url);
+  // CORS proxy (corsproxy.io started returning 403 for free-tier server-side
+  // requests in April 2026; codetabs remains free and accepts Letterboxd RSS).
+  var proxyUrl = 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(source.url);
   return fetch(proxyUrl)
     .then(function(r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);

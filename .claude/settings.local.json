@@ -21,7 +21,14 @@
       "WebFetch(domain:boxd.it)",
       "Bash(curl -s -o /dev/null -w '__TRACKED_VAR__ %{redirect_url}\\\\n' https://boxd.it/__TRACKED_VAR__)",
       "WebFetch(domain:letterboxd.com)",
-      "Bash(curl -s -A \"Mozilla/5.0\" \"https://letterboxd.com/njh20/film/daddy-longlegs/1/\")"
+      "Bash(curl -s -A \"Mozilla/5.0\" \"https://letterboxd.com/njh20/film/daddy-longlegs/1/\")",
+      "WebFetch(domain:corsproxy.io)",
+      "Bash(curl -s -A \"Mozilla/5.0\" \"https://letterboxd.com/djweaver29/rss/\")",
+      "Bash(curl -s -A \"Mozilla/5.0\" \"https://letterboxd.com/djweaver29/rss/\" -o \"X:\\\\Projects\\\\Movies in the Barn\\\\moviesinthebarn-site\\\\_dylan_rss.xml\")",
+      "Bash(curl -s -o \"X:\\\\Projects\\\\Movies in the Barn\\\\moviesinthebarn-site\\\\_proxy_test.xml\" -w \"HTTP %{http_code} | %{size_download} bytes\\\\n\" -H \"Origin: https://beta.moviesinthebarn.org\" -H \"User-Agent: Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36\" \"https://corsproxy.io/?https%3A%2F%2Fletterboxd.com%2Fdjweaver29%2Frss%2F\")",
+      "Bash(curl -s -o \"X:\\\\Projects\\\\Movies in the Barn\\\\moviesinthebarn-site\\\\_allorigins_test.xml\" -w \"HTTP %{http_code} | %{size_download} bytes\\\\n\" \"https://api.allorigins.win/raw?url=https%3A%2F%2Fletterboxd.com%2Fdjweaver29%2Frss%2F\")",
+      "Bash(curl -s -o \"X:\\\\Projects\\\\Movies in the Barn\\\\moviesinthebarn-site\\\\_codetabs_test.xml\" -w \"HTTP %{http_code} | %{size_download} bytes\\\\n\" \"https://api.codetabs.com/v1/proxy?quest=https://letterboxd.com/djweaver29/rss/\")",
+      "Bash(curl -sL -o \"X:\\\\Projects\\\\Movies in the Barn\\\\moviesinthebarn-site\\\\_codetabs_test.xml\" -w \"HTTP %{http_code} | %{size_download} bytes\\\\n\" \"https://api.codetabs.com/v1/proxy?quest=https://letterboxd.com/djweaver29/rss/\")"
     ]
   }
 }

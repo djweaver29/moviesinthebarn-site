@@ -145,36 +145,50 @@
       container.innerHTML = heroHtml + reviewsHtml;
 
       // Merge in any new reviews from the Letterboxd RSS feed
-      fetchLetterboxdRSSReviews().then(function(rssByTitle) {
-        var rssReviews = rssByTitle[film.title] || [];
-        if (!rssReviews.length) return;
+      fetchLetterboxdRSSReviews().then(function(result) {
+        var rssReviews = (result.byTitle[film.title] || []);
+        var errors     = result.errors || [];
 
         // Skip any RSS entry whose URL we already have, OR whose reviewer
         // already has a stored review for this film — one review per person.
         var stored = FILM_REVIEWS[film.title] || [];
-        var existingUrls = stored.map(function(r) { return r.letterboxdUrl; });
+        var existingUrls  = stored.map(function(r) { return r.letterboxdUrl; });
         var existingNames = stored.map(function(r) { return r.name.toLowerCase(); });
         var newReviews = rssReviews.filter(function(r) {
           return !existingUrls.includes(r.letterboxdUrl)
               && !existingNames.includes(r.name.toLowerCase());
         });
-        if (!newReviews.length) return;
 
-        // Find or create the review-cards container
-        var cardsEl = container.querySelector('.review-cards');
-        if (!cardsEl) {
-          var section = document.createElement('section');
-          section.className = 'film-page-reviews';
-          section.innerHTML = '<div class="film-page-reviews-inner"><h2 class="film-page-reviews-heading">Reviews</h2><div class="review-cards"></div></div>';
-          container.appendChild(section);
-          cardsEl = section.querySelector('.review-cards');
+        if (!newReviews.length && !errors.length) return;
+
+        // Find or create the reviews section / cards container
+        var sectionEl = container.querySelector('.film-page-reviews');
+        var cardsEl   = container.querySelector('.review-cards');
+        if (!sectionEl) {
+          sectionEl = document.createElement('section');
+          sectionEl.className = 'film-page-reviews';
+          sectionEl.innerHTML = '<div class="film-page-reviews-inner"><h2 class="film-page-reviews-heading">Reviews</h2><div class="review-cards"></div></div>';
+          container.appendChild(sectionEl);
+          cardsEl = sectionEl.querySelector('.review-cards');
         }
 
         // Re-render all cards sorted alphabetically so new ones slot in correctly
-        var allReviews = reviews.concat(newReviews).sort(function(a, b) {
-          return a.name.localeCompare(b.name, undefined, { sensitivity: "base" });
-        });
-        cardsEl.innerHTML = allReviews.map(buildReviewCard).join("");
+        if (newReviews.length) {
+          var allReviews = reviews.concat(newReviews).sort(function(a, b) {
+            return a.name.localeCompare(b.name, undefined, { sensitivity: "base" });
+          });
+          cardsEl.innerHTML = allReviews.map(buildReviewCard).join("");
+        }
+
+        // Surface a small notice if any RSS source failed to load
+        if (errors.length) {
+          var names = errors.map(function(e) { return e.name; }).join(', ');
+          var inner = sectionEl.querySelector('.film-page-reviews-inner');
+          var notice = document.createElement('p');
+          notice.className = 'review-notice';
+          notice.textContent = 'Some Letterboxd reviews couldn\u2019t load right now (' + names + '). Try refreshing.';
+          inner.appendChild(notice);
+        }
       });
     }
 
