@@ -44,7 +44,7 @@ function fetchLetterboxdRSSReviews() {
 function fetchSingleRSSFeed(source) {
   // CORS proxy (corsproxy.io started returning 403 for free-tier server-side
   // requests in April 2026; codetabs remains free and accepts Letterboxd RSS).
-  var proxyUrl = 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(source.url);
+  var proxyUrl = 'https://api.codetabs.com/v1/proxy/?quest=' + encodeURIComponent(source.url);
   return fetch(proxyUrl)
     .then(function(r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
