@@ -44,8 +44,8 @@
 <script src="events.js"></script>
   <script src="movie-meta.js"></script>
   <script src="reviews.js"></script>
+  <script src="rss-reviews.js"></script>
   <script src="calendar.js"></script>
-  <script src="letterboxd-rss.js"></script>
   <script>
     // Merge metadata
     EVENTS.forEach(function(e) {
@@ -126,14 +126,24 @@
         '</div>' +
       '</section>';
 
-      // Reviews section
-      var reviews = (FILM_REVIEWS[film.title] || []).slice().sort(function(a, b) {
+      // Reviews section — merge hand-written (reviews.js) with RSS-sourced
+      // (rss-reviews.js, regenerated server-side on a schedule). Stored entries
+      // win on dedup so there's only one review per person per film.
+      var stored = FILM_REVIEWS[film.title] || [];
+      var rssAll = (typeof RSS_REVIEWS !== "undefined" ? RSS_REVIEWS[film.title] : null) || [];
+      var storedUrls  = stored.map(function(r) { return r.letterboxdUrl; });
+      var storedNames = stored.map(function(r) { return r.name.toLowerCase(); });
+      var rssExtra = rssAll.filter(function(r) {
+        return !storedUrls.includes(r.letterboxdUrl)
+            && !storedNames.includes(r.name.toLowerCase());
+      });
+      var reviews = stored.concat(rssExtra).sort(function(a, b) {
         return a.name.localeCompare(b.name, undefined, { sensitivity: "base" });
       });
+
       var reviewsHtml = "";
       if (reviews.length) {
-          var cardsHtml = reviews.map(buildReviewCard).join("");
-
+        var cardsHtml = reviews.map(buildReviewCard).join("");
         reviewsHtml = '<section class="film-page-reviews">' +
           '<div class="film-page-reviews-inner">' +
             '<h2 class="film-page-reviews-heading">Reviews</h2>' +
@@ -143,53 +153,6 @@
       }
 
       container.innerHTML = heroHtml + reviewsHtml;
-
-      // Merge in any new reviews from the Letterboxd RSS feed
-      fetchLetterboxdRSSReviews().then(function(result) {
-        var rssReviews = (result.byTitle[film.title] || []);
-        var errors     = result.errors || [];
-
-        // Skip any RSS entry whose URL we already have, OR whose reviewer
-        // already has a stored review for this film — one review per person.
-        var stored = FILM_REVIEWS[film.title] || [];
-        var existingUrls  = stored.map(function(r) { return r.letterboxdUrl; });
-        var existingNames = stored.map(function(r) { return r.name.toLowerCase(); });
-        var newReviews = rssReviews.filter(function(r) {
-          return !existingUrls.includes(r.letterboxdUrl)
-              && !existingNames.includes(r.name.toLowerCase());
-        });
-
-        if (!newReviews.length && !errors.length) return;
-
-        // Find or create the reviews section / cards container
-        var sectionEl = container.querySelector('.film-page-reviews');
-        var cardsEl   = container.querySelector('.review-cards');
-        if (!sectionEl) {
-          sectionEl = document.createElement('section');
-          sectionEl.className = 'film-page-reviews';
-          sectionEl.innerHTML = '<div class="film-page-reviews-inner"><h2 class="film-page-reviews-heading">Reviews</h2><div class="review-cards"></div></div>';
-          container.appendChild(sectionEl);
-          cardsEl = sectionEl.querySelector('.review-cards');
-        }
-
-        // Re-render all cards sorted alphabetically so new ones slot in correctly
-        if (newReviews.length) {
-          var allReviews = reviews.concat(newReviews).sort(function(a, b) {
-            return a.name.localeCompare(b.name, undefined, { sensitivity: "base" });
-          });
-          cardsEl.innerHTML = allReviews.map(buildReviewCard).join("");
-        }
-
-        // Surface a small notice if any RSS source failed to load
-        if (errors.length) {
-          var names = errors.map(function(e) { return e.name; }).join(', ');
-          var inner = sectionEl.querySelector('.film-page-reviews-inner');
-          var notice = document.createElement('p');
-          notice.className = 'review-notice';
-          notice.textContent = 'Some Letterboxd reviews couldn\u2019t load right now (' + names + '). Try refreshing.';
-          inner.appendChild(notice);
-        }
-      });
     }
 
     function buildReviewCard(r) {

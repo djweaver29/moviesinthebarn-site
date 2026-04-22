@@ -33,7 +33,15 @@
       "Bash(curl -sS -o /tmp/rss.xml -w \"HTTP %{http_code}  bytes=%{size_download}  time=%{time_total}s\\\\n\" \"https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fletterboxd.com%2Fdjweaver29%2Frss%2F\")",
       "Bash(curl -sSL -o /tmp/rss.xml -w \"HTTP %{http_code}  bytes=%{size_download}  time=%{time_total}s\\\\n\" \"https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fletterboxd.com%2Fdjweaver29%2Frss%2F\")",
       "Bash(curl -sSLI \"https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fletterboxd.com%2Fdjweaver29%2Frss%2F\")",
-      "Bash(curl -sSL -o /tmp/rss.xml -w \"HTTP %{http_code}  bytes=%{size_download}\\\\n\" \"https://api.codetabs.com/v1/proxy/?quest=https%3A%2F%2Fletterboxd.com%2Fdjweaver29%2Frss%2F\")"
+      "Bash(curl -sSL -o /tmp/rss.xml -w \"HTTP %{http_code}  bytes=%{size_download}\\\\n\" \"https://api.codetabs.com/v1/proxy/?quest=https%3A%2F%2Fletterboxd.com%2Fdjweaver29%2Frss%2F\")",
+      "Bash(awk '/<item>/,/<\\\\/item>/' /tmp/rss.xml)",
+      "Bash(awk 'BEGIN{RS=\"</item>\"} /Dazed and Confused/ {print; print \"---END---\"}')",
+      "Bash(python3 scripts/sync-rss-reviews.py)",
+      "Bash(awk '/Dazed and Confused/,/\\\\],/' rss-reviews.js)",
+      "Bash(awk '/Dazed and Confused/,/^  \\\\],/' rss-reviews.js)",
+      "Bash(awk '/An Affair to Remember/,/^  \\\\],/' rss-reviews.js)",
+      "Bash(awk '/Godzilla Minus One/,/^  \\\\],/' rss-reviews.js)",
+      "Bash(awk 'BEGIN{RS=\"</item>\"} /Godzilla Minus One/ {print; print \"---\"}' /tmp/rss.xml)"
     ]
   }
 }
