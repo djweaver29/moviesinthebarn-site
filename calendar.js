@@ -422,9 +422,11 @@ function openFilmModal(card) {
       </div>
     `;
   } else {
+    const filmHref = `film.html?title=${filmSlug(e.title)}`;
     calEl.innerHTML = `
       <div class="film-modal-cal-options">
-        <a href="film.html?title=${filmSlug(e.title)}" class="btn-cal">Additional info</a>
+        <a href="${filmHref}#where-to-watch" class="btn-cal">Where to Watch</a>
+        <a href="${filmHref}#reviews" class="btn-cal btn-cal--outline">Reviews</a>
       </div>
     `;
   }

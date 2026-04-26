@@ -41,7 +41,11 @@
       "Bash(awk '/Dazed and Confused/,/^  \\\\],/' rss-reviews.js)",
       "Bash(awk '/An Affair to Remember/,/^  \\\\],/' rss-reviews.js)",
       "Bash(awk '/Godzilla Minus One/,/^  \\\\],/' rss-reviews.js)",
-      "Bash(awk 'BEGIN{RS=\"</item>\"} /Godzilla Minus One/ {print; print \"---\"}' /tmp/rss.xml)"
+      "Bash(awk 'BEGIN{RS=\"</item>\"} /Godzilla Minus One/ {print; print \"---\"}' /tmp/rss.xml)",
+      "Bash(curl -s -A \"Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0 Safari/537.36\" \"https://letterboxd.com/ayoitsmo/tag/movies-in-the-barn/reviews/\" -o /tmp/mo_p1.html)",
+      "Read(//tmp/**)",
+      "Bash(curl -s -A \"moviesinthebarn-rss-sync/1.0\" \"https://letterboxd.com/ayoitsmo/rss/\" -o /tmp/mo_rss.xml)",
+      "Bash(curl -s -A \"moviesinthebarn-rss-sync/1.0\" \"https://letterboxd.com/ayoitsmo/tag/movies-in-the-barn/reviews/\" -o /tmp/mo_p1b.html -w \"%{http_code}\\\\n\")"
     ]
   }
 }

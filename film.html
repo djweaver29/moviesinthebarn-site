@@ -121,7 +121,7 @@
             '<p class="film-page-meta">' + film.releaseYear + ' \u00b7 ' + film.runtime + ' \u00b7 ' + film.rating + '</p>' +
             (detailStr ? '<p class="film-page-detail">' + detailStr + '</p>' : '') +
             '<p class="film-page-desc">' + film.description + '</p>' +
-            '<div class="film-page-actions">' + actionsHtml + '</div>' +
+            '<div class="film-page-actions" id="where-to-watch">' + actionsHtml + '</div>' +
           '</div>' +
         '</div>' +
       '</section>';
@@ -144,7 +144,7 @@
       var reviewsHtml = "";
       if (reviews.length) {
         var cardsHtml = reviews.map(buildReviewCard).join("");
-        reviewsHtml = '<section class="film-page-reviews">' +
+        reviewsHtml = '<section class="film-page-reviews" id="reviews">' +
           '<div class="film-page-reviews-inner">' +
             '<h2 class="film-page-reviews-heading">Reviews</h2>' +
             '<div class="review-cards">' + cardsHtml + '</div>' +
