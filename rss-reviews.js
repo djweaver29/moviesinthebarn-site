@@ -7,6 +7,13 @@
 var RSS_REVIEWS = {
   "An Affair to Remember": [
     {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/an-affair-to-remember/",
+      "date": "2025-05-06",
+      "text": "very weird to watch after having already seen the original, which is probably a thing no one has been able to say honestly since 1957. <i>Love Affair </i>at least had the courage to put her in the wheelchair on screen",
+      "rating": 3.5
+    },
+    {
       "name": "Nathan H.",
       "letterboxdUrl": "https://letterboxd.com/njh20/film/an-affair-to-remember/",
       "date": "2025-05-06",
@@ -16,11 +23,27 @@ var RSS_REVIEWS = {
   ],
   "Babette's Feast": [
     {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/babettes-feast/",
+      "date": "2025-04-22",
+      "text": "is it really an 80s movie without a dash of satanic panic?",
+      "rating": 3.5
+    },
+    {
       "name": "Nathan H.",
       "letterboxdUrl": "https://letterboxd.com/njh20/film/babettes-feast/",
       "date": "2025-04-22",
       "liked": true,
       "rating": 3.5
+    }
+  ],
+  "Before Sunset": [
+    {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/before-sunset/",
+      "date": "2025-05-20",
+      "text": "what another pure and lovely time spying on star-crossed lovers",
+      "rating": 4.0
     }
   ],
   "Chicken Run": [
@@ -42,6 +65,12 @@ var RSS_REVIEWS = {
       "rewatch": true
     },
     {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/daddy-longlegs/",
+      "date": "2025-09-30",
+      "rating": 3.0
+    },
+    {
       "name": "Nathan H.",
       "letterboxdUrl": "https://letterboxd.com/njh20/film/daddy-longlegs/1/",
       "date": "2025-09-30",
@@ -58,11 +87,37 @@ var RSS_REVIEWS = {
       "rewatch": true
     },
     {
+      "name": "Joe H.",
+      "letterboxdUrl": "https://letterboxd.com/bigjoe0024/film/dazed-and-confused/",
+      "date": "2026-04-21",
+      "text": "As someone who was homeschooled...."
+    },
+    {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/dazed-and-confused/",
+      "date": "2026-04-21",
+      "text": "is this the canon origin of alright alright alright",
+      "rating": 3.0
+    },
+    {
       "name": "Nathan H.",
       "letterboxdUrl": "https://letterboxd.com/njh20/film/dazed-and-confused/",
       "date": "2026-04-21",
       "rewatch": true,
       "rating": 3.5
+    },
+    {
+      "name": "Sam H.",
+      "letterboxdUrl": "https://letterboxd.com/samsonite49/film/dazed-and-confused/1/",
+      "date": "2026-04-21",
+      "text": "Hazed and Groomed",
+      "rewatch": true
+    },
+    {
+      "name": "Sam H.",
+      "letterboxdUrl": "https://letterboxd.com/samsonite49/film/dazed-and-confused/",
+      "date": "2026-04-21",
+      "text": "I love watching children get beat up for 103 minutes"
     }
   ],
   "Eephus": [
@@ -72,6 +127,20 @@ var RSS_REVIEWS = {
       "date": "2026-04-07",
       "text": "The first time I watched this I was focused on the thing that was ending. This time out, I really appreciated the thing that was happening, and the memory it created. Til the end of time those guys will be telling the story of this game.",
       "rewatch": true
+    },
+    {
+      "name": "Joe H.",
+      "letterboxdUrl": "https://letterboxd.com/bigjoe0024/film/eephus/",
+      "date": "2026-04-07",
+      "text": "That one guy reminds me of my coworker Jerry",
+      "liked": true
+    },
+    {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/eephus/",
+      "date": "2026-04-07",
+      "text": "why am I sad that men I’ve never met who aren’t real won’t ever play baseball together again",
+      "rating": 3.5
     }
   ],
   "Fantastic Mr. Fox": [
@@ -85,10 +154,26 @@ var RSS_REVIEWS = {
   ],
   "Godzilla": [
     {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/godzilla/",
+      "date": "2025-06-03",
+      "text": "in this world of cgi, there’s something so charming about watching a movie with practical effects. humans made that. humans said “let’s make a diorama of Tokyo and then make a giant sea lizard that shoot fire and destroys it.”\n\nhumans are great",
+      "rating": 3.5
+    },
+    {
       "name": "Nathan H.",
       "letterboxdUrl": "https://letterboxd.com/njh20/film/godzilla/",
       "date": "2025-06-03",
       "liked": true
+    }
+  ],
+  "Godzilla Minus One": [
+    {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/godzilla-minus-one/",
+      "date": "2025-06-17",
+      "text": "I came to feel attacked by a sea monster and I’m honestly feeling so emotionally vulnerable right now",
+      "rating": 3.5
     }
   ],
   "Inside Man": [
@@ -100,6 +185,13 @@ var RSS_REVIEWS = {
       "rewatch": true
     },
     {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/inside-man/",
+      "date": "2025-11-25",
+      "text": "for once a somewhat plausible and realistic unrealistic heist movie",
+      "rating": 3.0
+    },
+    {
       "name": "Nathan H.",
       "letterboxdUrl": "https://letterboxd.com/njh20/film/inside-man/",
       "date": "2025-11-25",
@@ -108,6 +200,15 @@ var RSS_REVIEWS = {
     }
   ],
   "Lilo & Stitch": [
+    {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/lilo-stitch/",
+      "date": "2025-07-08",
+      "text": "holy crap was I not emotionally prepared for rewatching this as an adult with a greater understanding and compassion for Nani",
+      "rewatch": true,
+      "liked": true,
+      "rating": 4.5
+    },
     {
       "name": "Nathan H.",
       "letterboxdUrl": "https://letterboxd.com/njh20/film/lilo-stitch/",
@@ -124,6 +225,14 @@ var RSS_REVIEWS = {
       "date": "2025-10-28",
       "text": "I know every other cameo is bigger and more exciting, but Christopher Guest steals the whole movie with his one scene.",
       "rewatch": true
+    },
+    {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/little-shop-of-horrors/",
+      "date": "2025-10-28",
+      "text": "oh so this is where the idea for Larry Boy and the Rumor Weed came from\n\nchildhood ruined, 5 stars",
+      "liked": true,
+      "rating": 5.0
     }
   ],
   "Moonrise Kingdom": [
@@ -133,6 +242,14 @@ var RSS_REVIEWS = {
       "date": "2025-08-26",
       "text": "It's incredible that Wes captures what it felt like to be a kid in a movie that's engaging for adults. Call them precocious all you want, but I would sit there as a kid with my friends and devise these exact sorts of schemes, thinking we were the smartest people out there. We just never had the follow through to actually do them.",
       "rewatch": true
+    },
+    {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/moonrise-kingdom/",
+      "date": "2025-08-26",
+      "text": "I felt warm and fuzzy the entire time. lovely",
+      "liked": true,
+      "rating": 4.5
     }
   ],
   "Paths of Glory": [
@@ -153,6 +270,13 @@ var RSS_REVIEWS = {
       "rewatch": true
     },
     {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/patty-hearst/",
+      "date": "2025-11-11",
+      "text": "artistic a+ love that all the scenes where she’s blindfolded are visually trippy af\n\nbut tbh story was hard to follow and i was one of the only people on the room who knew the story",
+      "rating": 3.0
+    },
+    {
       "name": "Nathan H.",
       "letterboxdUrl": "https://letterboxd.com/njh20/film/patty-hearst/",
       "date": "2025-11-11",
@@ -169,6 +293,13 @@ var RSS_REVIEWS = {
       "rewatch": true
     },
     {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/phantom-of-the-paradise/",
+      "date": "2025-10-17",
+      "text": "what the hell justice for beef",
+      "rating": 4.0
+    },
+    {
       "name": "Nathan H.",
       "letterboxdUrl": "https://letterboxd.com/njh20/film/phantom-of-the-paradise/",
       "date": "2025-10-17",
@@ -183,6 +314,14 @@ var RSS_REVIEWS = {
       "date": "2025-08-12",
       "text": "I watch a movie like this and think <i>I should have been in a band when I was in high school in Dublin in the 80s</i>.",
       "rewatch": true
+    },
+    {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/sing-street/",
+      "date": "2025-08-12",
+      "text": "this was just the movie I needed. boys in a band being silly and emo and hopeful",
+      "liked": true,
+      "rating": 4.0
     }
   ],
   "The Florida Project": [
@@ -192,6 +331,22 @@ var RSS_REVIEWS = {
       "date": "2025-09-16",
       "text": "My recollection was that Halley was a more sympathetic character. The movie doesn't need her to be for it to work though. So often this sort of narrative portrays someone who is truly trying their best, but Halley isn't . She's just existing in the only way she knows how.",
       "rewatch": true
+    },
+    {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/the-florida-project/",
+      "date": "2025-09-16",
+      "text": "what a ride to go into completely blind",
+      "rating": 3.0
+    }
+  ],
+  "The Taste of Things": [
+    {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/the-taste-of-things/",
+      "date": "2025-04-01",
+      "text": "2/3 cooking asmr\n\n1/3 daring to ask “what if the love language of acts of service was specifically the act of serving pretentious French cuisine?”",
+      "rating": 2.0
     }
   ],
   "Treasure Planet": [
@@ -201,6 +356,13 @@ var RSS_REVIEWS = {
       "date": "2025-07-22",
       "text": "Did not appreciate how hard the \"camera\" goes in some of these scenes as a kid. Treasure Planet walked so Tintin could run.",
       "rewatch": true
+    },
+    {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/treasure-planet/",
+      "date": "2025-07-22",
+      "text": "fantastic story but something about the 2d/3d simultaneous animation breaks my brain",
+      "rating": 3.5
     }
   ]
 };
