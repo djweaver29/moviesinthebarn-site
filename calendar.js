@@ -423,10 +423,22 @@ function openFilmModal(card) {
     `;
   } else {
     const filmHref = `film.html?title=${filmSlug(e.title)}`;
+    const stored = (typeof FILM_REVIEWS !== "undefined" ? FILM_REVIEWS[e.title] : null) || [];
+    const rss = (typeof RSS_REVIEWS !== "undefined" ? RSS_REVIEWS[e.title] : null) || [];
+    const storedUrls = stored.map(r => r.letterboxdUrl);
+    const storedNames = stored.map(r => r.name.toLowerCase());
+    const rssExtra = rss.filter(r =>
+      !storedUrls.includes(r.letterboxdUrl) &&
+      !storedNames.includes(r.name.toLowerCase())
+    );
+    const hasReviews = stored.length + rssExtra.length > 0;
+    const reviewsBtn = hasReviews
+      ? `<a href="${filmHref}#reviews" class="btn-cal btn-cal--outline">Reviews</a>`
+      : "";
     calEl.innerHTML = `
       <div class="film-modal-cal-options">
         <a href="${filmHref}#where-to-watch" class="btn-cal">Where to Watch</a>
-        <a href="${filmHref}#reviews" class="btn-cal btn-cal--outline">Reviews</a>
+        ${reviewsBtn}
       </div>
     `;
   }

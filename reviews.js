@@ -269,6 +269,13 @@ const FILM_REVIEWS = {
       letterboxdUrl: "https://boxd.it/6ttXmx",
       date: "2024-04-30"
     },
+    {
+      name: "Morgan M.",
+      rating: 2.0,
+      text: "honestly I just can’t with this - I get the what the movie was going for but seeing the rape scene not once but twice was so so uncomfortable I can’t rate it higher\n\nbut anyway good on her for getting to live her best life with none of the men in the end",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/the-last-duel-2021/",
+      date: "2024-04-30"
+    },
   ],
 
   "Love Affair": [
@@ -286,6 +293,13 @@ const FILM_REVIEWS = {
       letterboxdUrl: "https://boxd.it/6tBJ9Z",
       date: "2024-05-14"
     },
+    {
+      name: "Morgan M.",
+      rating: 4.0,
+      text: "honestly such a good time. The deadpan random comedy, the tonal shifts every half hour, the shenanigans, the drama, kudos to the restoration team for bringing this into my life 10/10 no notes\n\nalso does anyone else think the orphanage guy looks like Kevin from Brooklyn 99 or is that just me?\n\nedit: after reading reviews I discovered that this wasn’t supposed to be considered a romcom. I stand by calling it a romcom anyway",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/love-affair-1939/",
+      date: "2024-05-14"
+    },
   ],
 
   "Before Sunrise": [
@@ -294,6 +308,13 @@ const FILM_REVIEWS = {
       rewatch: true,
       text: "Ethan Hawke is such a Linklater stand-in in this movie. It's wild how much this movie feels a piece with Slackers and Waking Life. Kinda can't believe you can make something with so much pretentious, philosophical dialogue that is so romantic. A true testament to the chemistry of the performances, but also the decision to not make these characters too much of one thing.",
       letterboxdUrl: "https://boxd.it/6zlUgJ",
+      date: "2024-05-28"
+    },
+    {
+      name: "Morgan M.",
+      rating: 4.5,
+      text: "this was just lovely. pure and lovely time spying on strangers on their first date\n\n11/10 may actually talk to a stranger on the next train I take",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/before-sunrise/",
       date: "2024-05-28"
     },
   ],
@@ -306,6 +327,13 @@ const FILM_REVIEWS = {
       letterboxdUrl: "https://boxd.it/6F21YR",
       date: "2024-06-11"
     },
+    {
+      name: "Morgan M.",
+      rating: 4.5,
+      text: "i wonder what stryper thinks of this movie\n\nno seriously this was so so fun I would like more of whatever this came from please",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/whip-it/",
+      date: "2024-06-11"
+    },
   ],
 
   "Lady Bird": [
@@ -314,6 +342,13 @@ const FILM_REVIEWS = {
       rewatch: true,
       text: "It had been too long, and I forgot how much I love this movie. There's a lot of charm and wit, but there's also just straightforward comedy, which I had fully forgotten.\n\nIt's also the first time I've seen it since watching The Wise Kids, and man, would those movies pair well together. I showed it in the barn alongside Whip It this month, which I stand by as a great pairing, but I had forgotten that it was set across an entire year of school and had as interplay with faith as it does. So if you're reading this and like Lady Bird, you should really watch The Wise Kids. Even if you're not reading this and don't like Lady Bird, you should watch The Wise Kids. It is well worth your time.",
       letterboxdUrl: "https://boxd.it/6KvYrb",
+      date: "2024-06-25"
+    },
+    {
+      name: "Morgan M.",
+      rating: 4.5,
+      text: "good gravy I need to call my mom now",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/lady-bird/",
       date: "2024-06-25"
     },
   ],
@@ -352,6 +387,13 @@ const FILM_REVIEWS = {
       letterboxdUrl: "https://boxd.it/76g9il",
       date: "2024-07-30"
     },
+    {
+      name: "Morgan M.",
+      rating: 2.5,
+      text: "I watched this at summer camp as a kid and apparently I blocked out the memory because this was all new to me",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/chicken-run/",
+      date: "2024-07-30"
+    },
   ],
 
   "Guardians of the Galaxy": [
@@ -362,6 +404,13 @@ const FILM_REVIEWS = {
       letterboxdUrl: "https://boxd.it/76r7sv",
       date: "2024-08-14"
     },
+    {
+      name: "Morgan M.",
+      rating: 2.5,
+      text: "I don’t know if it’s my lack of allegiance to watching all of the MCU or the fact that the people I do movie night with usually pick things that have more to chew on plot-wise, or if my hearing’s just shit, but it took me a while to begin being able to follow what was happening in this movie. Visuals were dope though. Thought the mixtape would be more meta but overall it’s a thing I would put in front of my eyes as an excuse to eat a farm’s worth of popcorn and that all that matters, right?",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/guardians-of-the-galaxy/",
+      date: "2024-08-14"
+    },
   ],
 
   "Dungeons & Dragons: Honor Among Thieves": [
@@ -370,6 +419,13 @@ const FILM_REVIEWS = {
       rewatch: true,
       text: "I won't be so bold as to say this iterates on Guardians of the Galaxy, but it certainly uses the template well.",
       letterboxdUrl: "https://boxd.it/7cyNT7",
+      date: "2024-08-27"
+    },
+    {
+      name: "Morgan M.",
+      rating: 4.0,
+      text: "honestly so fun so campy so shenanigans and also heartfelt this is the greatest game I’ve never played",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/dungeons-dragons-honor-among-thieves/",
       date: "2024-08-27"
     },
   ],
@@ -399,6 +455,13 @@ const FILM_REVIEWS = {
       letterboxdUrl: "https://boxd.it/7s9BoZ",
       date: "2024-10-01"
     },
+    {
+      name: "Morgan M.",
+      rating: 3.0,
+      text: "the whole time i was just thinking “girl, run!” while simultaneously knowing they had to have a kid and therefore knowing she wasn’t running anytime soon.\n\nI felt every bit of the loneliness, the isolation, the simultaneous desperation to be part of and yet only yours. those aren’t the right words, but you get the idea. the feeling of always being no more than a side character to the most important person(s) in your life",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/priscilla/",
+      date: "2024-10-01"
+    },
   ],
 
   "The Witches of Eastwick": [
@@ -407,6 +470,13 @@ const FILM_REVIEWS = {
       rewatch: true,
       text: "This movie goes so far off the rails that it somehow lands back on them. So much laughter and so much discomfort. Incredibly fortunate to have friends who trust me enough to take them on this ride.",
       letterboxdUrl: "https://boxd.it/7z4HHB",
+      date: "2024-10-15"
+    },
+    {
+      name: "Morgan M.",
+      rating: 3.5,
+      text: "what the hell episode of twilight zone was this\n\nhonestly worth my time but I don’t know how to explain how",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/the-witches-of-eastwick/",
       date: "2024-10-15"
     },
   ],
@@ -419,6 +489,13 @@ const FILM_REVIEWS = {
       letterboxdUrl: "https://boxd.it/7GfmUJ",
       date: "2024-10-29"
     },
+    {
+      name: "Morgan M.",
+      rating: 4.0,
+      text: "so if I did the math right, that funeral scene takes place this year; so, um, do with that what you will",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/death-becomes-her/",
+      date: "2024-10-29"
+    },
   ],
 
   "Digging for Fire": [
@@ -427,6 +504,13 @@ const FILM_REVIEWS = {
       rewatch: true,
       text: "Rosemarie DeWitt and Orlando Bloom wearing the same outfit on the beach is so funny.",
       letterboxdUrl: "https://boxd.it/7NtxLf",
+      date: "2024-11-12"
+    },
+    {
+      name: "Morgan M.",
+      rating: 4.0,
+      text: "I love how real it all was. The depth of a search for meaning portrayed mostly in completely banal conversations - it was somehow more immersive than “normal” scenes that feel so intentionally intentional.",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/digging-for-fire/",
       date: "2024-11-12"
     },
   ],
@@ -439,6 +523,13 @@ const FILM_REVIEWS = {
       letterboxdUrl: "https://boxd.it/7Uv84H",
       date: "2024-11-26"
     },
+    {
+      name: "Morgan M.",
+      rating: 3.0,
+      text: "the more I think about it, the more I realize that this could’ve been a good movie about a couple finding themselves again through new friendships *or* a good movie about authenticity in filmmaking\n\nbut unfortunately this is a mediocre movie about both\n\nalso release of the “ben stiller’s character’s midlife crisis as seen through the eyes of douche hipster filmmaker adam driver” documentary when? kinda pissed this didn’t turn into an episode of punk’d tbh",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/while-were-young/",
+      date: "2024-11-26"
+    },
   ],
 
   "RRR": [
@@ -447,6 +538,13 @@ const FILM_REVIEWS = {
       rewatch: true,
       text: "Could not wipe the stupid grin off my face to whole way through. Somehow even better when you know what's coming. Perfect movie to kick of the season!",
       letterboxdUrl: "https://boxd.it/48I5Qt",
+      date: "2023-04-18"
+    },
+    {
+      name: "Morgan M.",
+      rating: 4.5,
+      text: "a thrilling and surprisingly joyous tale of the power of friendship. And weapons.",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/rrr/",
       date: "2023-04-18"
     },
   ],
@@ -469,6 +567,13 @@ const FILM_REVIEWS = {
       letterboxdUrl: "https://boxd.it/4ndOWJ",
       date: "2023-06-13"
     },
+    {
+      name: "Morgan M.",
+      rating: 4.0,
+      text: "Did I know what was going on? No. Did I enjoy? Yes. Did I think the arch symbol was an old-school McDonalds? Also yes.",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/brick/",
+      date: "2023-06-13"
+    },
   ],
 
   "Herbie Fully Loaded": [
@@ -479,6 +584,13 @@ const FILM_REVIEWS = {
       letterboxdUrl: "https://boxd.it/4D79j9",
       date: "2023-08-01"
     },
+    {
+      name: "Morgan M.",
+      rating: 4.0,
+      text: "this judgement may be clouded by immense feelings of Nostalgic Girl Power™ but also Maggie Payton walked so Danica Patrick could run",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/herbie-fully-loaded/",
+      date: "2023-08-01"
+    },
   ],
 
   "The Killing": [
@@ -487,6 +599,13 @@ const FILM_REVIEWS = {
       rewatch: true,
       text: "Sam: \"I didn't know movies from the fifties could be funny.\"",
       letterboxdUrl: "https://boxd.it/4M5bH5",
+      date: "2023-08-29"
+    },
+    {
+      name: "Morgan M.",
+      rating: 4.0,
+      text: "something something shooting a horse out of season",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/the-killing/",
       date: "2023-08-29"
     },
   ],
@@ -507,6 +626,13 @@ const FILM_REVIEWS = {
       letterboxdUrl: "https://boxd.it/51amEB",
       date: "2023-10-18"
     },
+    {
+      name: "Morgan M.",
+      rating: 4.0,
+      text: "wasn’t sure what to expect and it did not disappoint\n\nalso just found out my friend showed me the alternate ending and not the theatrical one, so interesting choice, Dylan",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/get-out-2017/",
+      date: "2023-10-17"
+    },
   ],
 
   "The Thing": [
@@ -515,6 +641,13 @@ const FILM_REVIEWS = {
       rewatch: true,
       text: "I love how much of the score in this movie is just the wind blowing.",
       letterboxdUrl: "https://boxd.it/55QJMN",
+      date: "2023-10-31"
+    },
+    {
+      name: "Morgan M.",
+      rating: 3.5,
+      text: "why the heck have I never seen this movie referenced as an inspiration for stranger things? because if it’s not they’re lying.",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/the-thing/",
       date: "2023-10-31"
     },
   ],
@@ -548,6 +681,13 @@ const FILM_REVIEWS = {
       letterboxdUrl: "https://boxd.it/5afP9N",
       date: "2023-11-14"
     },
+    {
+      name: "Morgan M.",
+      rating: 3.0,
+      text: "honestly I’m just disturbed at the filth of humanity.",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/paths-of-glory/",
+      date: "2023-11-14"
+    },
   ],
 
   "A Few Good Men": [
@@ -564,6 +704,13 @@ const FILM_REVIEWS = {
       liked: true,
       text: "The script and acting is through the roof. Wonderful.",
       letterboxdUrl: "https://boxd.it/5eW4ZT",
+      date: "2023-11-28"
+    },
+    {
+      name: "Morgan M.",
+      rating: 4.5,
+      text: "I’ve seen this a bunch of times on like tnt or something with my dad explaining the plot over the part of the movie on screen and tbh was nice to just watch the damn movie\n\nsurprisingly funnier than I expected",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/a-few-good-men/",
       date: "2023-11-28"
     },
   ],
@@ -618,6 +765,12 @@ const FILM_REVIEWS = {
       letterboxdUrl: "https://boxd.it/324hnL",
       date: "2022-07-17"
     },
+    {
+      name: "Morgan M.",
+      rating: 3.5,
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/speed-racer/",
+      date: "2022-07-07"
+    },
   ],
 
   "Ishtar": [
@@ -628,6 +781,12 @@ const FILM_REVIEWS = {
       letterboxdUrl: "https://boxd.it/37qy5D",
       date: "2022-08-10"
     },
+    {
+      name: "Morgan M.",
+      rating: 4.0,
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/ishtar/",
+      date: "2022-08-10"
+    },
   ],
 
   "O Brother, Where Art Thou?": [
@@ -636,6 +795,12 @@ const FILM_REVIEWS = {
       rewatch: true,
       text: "Boy is this movie perfect. The Coens really are experts of pacing. The movie doesn't feel brisk by any means but it ebs and flows with brilliant little detours to where it's never fast paced nor slow.",
       letterboxdUrl: "https://boxd.it/3aeqhT",
+      date: "2022-08-24"
+    },
+    {
+      name: "Morgan M.",
+      rating: 4.5,
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/o-brother-where-art-thou/",
       date: "2022-08-24"
     },
   ],
@@ -850,6 +1015,130 @@ const FILM_REVIEWS = {
       liked: true,
       letterboxdUrl: "https://boxd.it/1V0Jqf",
       date: "2021-06-09"
+    },
+  ],
+
+  "Anatomy of a Fall": [
+    {
+      name: "Morgan M.",
+      rating: 4.5,
+      text: "damn. visually, musically, story-wise this was a masterful work of art",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/anatomy-of-a-fall/",
+      date: "2024-04-16"
+    },
+  ],
+
+  "Tully": [
+    {
+      name: "Morgan M.",
+      rating: 3.5,
+      text: "honestly thought they were gonna kiss but this is cool too",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/tully-2018/",
+      date: "2023-10-03"
+    },
+  ],
+
+  "Cha Cha Real Smooth": [
+    {
+      name: "Morgan M.",
+      rating: 4.5,
+      text: "I’m feeling some type of way right now, sonder maybe?\n\nanyway, what I love is that this isn’t just a coming-of-age story for our main character, Andrew. It’s just as much a coming-of-age (different age, but still) for Domino, but since Andrew is our perspective character, we’re biased to seeing Domino’s actions and behavior through Andrew’s rose-colored glasses. I think there’s a lot of depth here to all the main characters, not just Domino, that other reviews are missing because they focus on Andrew’s naive perspective, failing to recognize that he’s our unreliable narrator to the emotions of the other characters.",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/cha-cha-real-smooth/",
+      date: "2023-09-19"
+    },
+  ],
+
+  "Logan Lucky": [
+    {
+      name: "Morgan M.",
+      rating: 4.5,
+      text: "honestly this was such a fun romp at the racetrack 10/10 recommend.",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/logan-lucky/",
+      date: "2023-08-15"
+    },
+  ],
+
+  "The Love Bug": [
+    {
+      name: "Morgan M.",
+      rating: 3.5,
+      text: "11/10 it really knocked me off the Christmas tree",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/the-love-bug/",
+      date: "2023-07-18"
+    },
+  ],
+
+  "Donnie Darko": [
+    {
+      name: "Morgan M.",
+      rating: 4.5,
+      text: "it was a stormy day and I’d already been feeling a bit like having an existential crisis so this being the movie pick was a blessing.",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/donnie-darko/",
+      date: "2023-06-27"
+    },
+  ],
+
+  "The Grand Budapest Hotel": [
+    {
+      name: "Morgan M.",
+      rating: 4.5,
+      text: "beautiful, charming, cozy, somehow",
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/the-grand-budapest-hotel/",
+      date: "2023-05-02"
+    },
+  ],
+
+  "Nadia, Butterfly": [
+    {
+      name: "Morgan M.",
+      rating: 2.5,
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/nadia-butterfly/",
+      date: "2022-10-26"
+    },
+  ],
+
+  "The Rider": [
+    {
+      name: "Morgan M.",
+      rating: 3.5,
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/the-rider/",
+      date: "2022-10-12"
+    },
+  ],
+
+  "The Beguiled": [
+    {
+      name: "Morgan M.",
+      rating: 3.5,
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/the-beguiled-2017/",
+      date: "2022-09-28"
+    },
+  ],
+
+  "Little Women": [
+    {
+      name: "Morgan M.",
+      rating: 4.5,
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/little-women-2019/",
+      date: "2022-09-14"
+    },
+  ],
+
+  "Valerian and the City of a Thousand Planets": [
+    {
+      name: "Morgan M.",
+      rating: 3.0,
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/valerian-and-the-city-of-a-thousand-planets/",
+      date: "2022-07-27"
+    },
+  ],
+
+  "Scott Pilgrim vs. the World": [
+    {
+      name: "Morgan M.",
+      rating: 4.0,
+      letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/scott-pilgrim-vs-the-world/",
+      date: "2022-06-08"
     },
   ],
 
