@@ -296,6 +296,7 @@ const FILM_REVIEWS = {
     {
       name: "Morgan M.",
       rating: 4.0,
+      liked: true,
       text: "honestly such a good time. The deadpan random comedy, the tonal shifts every half hour, the shenanigans, the drama, kudos to the restoration team for bringing this into my life 10/10 no notes\n\nalso does anyone else think the orphanage guy looks like Kevin from Brooklyn 99 or is that just me?\n\nedit: after reading reviews I discovered that this wasn’t supposed to be considered a romcom. I stand by calling it a romcom anyway",
       letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/love-affair-1939/",
       date: "2024-05-14"
@@ -313,6 +314,7 @@ const FILM_REVIEWS = {
     {
       name: "Morgan M.",
       rating: 4.5,
+      liked: true,
       text: "this was just lovely. pure and lovely time spying on strangers on their first date\n\n11/10 may actually talk to a stranger on the next train I take",
       letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/before-sunrise/",
       date: "2024-05-28"
@@ -330,6 +332,7 @@ const FILM_REVIEWS = {
     {
       name: "Morgan M.",
       rating: 4.5,
+      liked: true,
       text: "i wonder what stryper thinks of this movie\n\nno seriously this was so so fun I would like more of whatever this came from please",
       letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/whip-it/",
       date: "2024-06-11"
@@ -347,6 +350,7 @@ const FILM_REVIEWS = {
     {
       name: "Morgan M.",
       rating: 4.5,
+      liked: true,
       text: "good gravy I need to call my mom now",
       letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/lady-bird/",
       date: "2024-06-25"
@@ -424,6 +428,7 @@ const FILM_REVIEWS = {
     {
       name: "Morgan M.",
       rating: 4.0,
+      liked: true,
       text: "honestly so fun so campy so shenanigans and also heartfelt this is the greatest game I’ve never played",
       letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/dungeons-dragons-honor-among-thieves/",
       date: "2024-08-27"
@@ -492,6 +497,7 @@ const FILM_REVIEWS = {
     {
       name: "Morgan M.",
       rating: 4.0,
+      liked: true,
       text: "so if I did the math right, that funeral scene takes place this year; so, um, do with that what you will",
       letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/death-becomes-her/",
       date: "2024-10-29"
@@ -509,6 +515,7 @@ const FILM_REVIEWS = {
     {
       name: "Morgan M.",
       rating: 4.0,
+      liked: true,
       text: "I love how real it all was. The depth of a search for meaning portrayed mostly in completely banal conversations - it was somehow more immersive than “normal” scenes that feel so intentionally intentional.",
       letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/digging-for-fire/",
       date: "2024-11-12"
@@ -543,6 +550,7 @@ const FILM_REVIEWS = {
     {
       name: "Morgan M.",
       rating: 4.5,
+      liked: true,
       text: "a thrilling and surprisingly joyous tale of the power of friendship. And weapons.",
       letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/rrr/",
       date: "2023-04-18"
@@ -1042,6 +1050,7 @@ const FILM_REVIEWS = {
     {
       name: "Morgan M.",
       rating: 4.5,
+      liked: true,
       text: "I’m feeling some type of way right now, sonder maybe?\n\nanyway, what I love is that this isn’t just a coming-of-age story for our main character, Andrew. It’s just as much a coming-of-age (different age, but still) for Domino, but since Andrew is our perspective character, we’re biased to seeing Domino’s actions and behavior through Andrew’s rose-colored glasses. I think there’s a lot of depth here to all the main characters, not just Domino, that other reviews are missing because they focus on Andrew’s naive perspective, failing to recognize that he’s our unreliable narrator to the emotions of the other characters.",
       letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/cha-cha-real-smooth/",
       date: "2023-09-19"
@@ -1052,6 +1061,7 @@ const FILM_REVIEWS = {
     {
       name: "Morgan M.",
       rating: 4.5,
+      liked: true,
       text: "honestly this was such a fun romp at the racetrack 10/10 recommend.",
       letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/logan-lucky/",
       date: "2023-08-15"
@@ -1062,6 +1072,7 @@ const FILM_REVIEWS = {
     {
       name: "Morgan M.",
       rating: 3.5,
+      liked: true,
       text: "11/10 it really knocked me off the Christmas tree",
       letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/the-love-bug/",
       date: "2023-07-18"
@@ -1137,6 +1148,7 @@ const FILM_REVIEWS = {
     {
       name: "Morgan M.",
       rating: 4.0,
+      liked: true,
       letterboxdUrl: "https://letterboxd.com/ayoitsmo/film/scott-pilgrim-vs-the-world/",
       date: "2022-06-08"
     },
