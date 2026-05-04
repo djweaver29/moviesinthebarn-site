@@ -46,16 +46,6 @@ var RSS_REVIEWS = {
       "rating": 4.0
     }
   ],
-  "Chicken Run": [
-    {
-      "name": "Nathan H.",
-      "letterboxdUrl": "https://letterboxd.com/njh20/film/chicken-run/",
-      "date": "2024-07-30",
-      "rewatch": true,
-      "liked": true,
-      "rating": 3.5
-    }
-  ],
   "Daddy Longlegs": [
     {
       "name": "Dylan W.",
