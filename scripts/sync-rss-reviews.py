@@ -127,16 +127,39 @@ def parse_feed(xml_bytes, reviewer_name, event_dates):
     return out
 
 
+def load_existing_reviews():
+    """Parse the existing rss-reviews.js and return its data as a dict,
+    or an empty dict if the file doesn't exist or can't be parsed."""
+    if not OUTPUT_PATH.exists():
+        return {}
+    text = OUTPUT_PATH.read_text(encoding="utf-8")
+    match = re.search(r"var RSS_REVIEWS\s*=\s*(\{.*\});", text, flags=re.DOTALL)
+    if not match:
+        return {}
+    try:
+        return json.loads(match.group(1))
+    except json.JSONDecodeError:
+        return {}
+
+
 def main():
     event_dates = load_event_dates()
-    by_title = {}
     errors = []
+
+    # Seed with whatever is already in rss-reviews.js so we only append.
+    by_title = load_existing_reviews()
 
     for src in RSS_SOURCES:
         try:
             xml = fetch(src["url"])
             for film_title, review in parse_feed(xml, src["name"], event_dates):
-                by_title.setdefault(film_title, []).append(review)
+                # Deduplicate: replace existing entry if this reviewer already has one for this film.
+                existing = by_title.setdefault(film_title, [])
+                existing_names = [r["name"] for r in existing]
+                if review["name"] in existing_names:
+                    existing[existing_names.index(review["name"])] = review
+                else:
+                    existing.append(review)
         except Exception as e:
             errors.append(f"{src['name']}: {e}")
             print(f"warn: failed {src['name']}: {e}", file=sys.stderr)
@@ -161,8 +184,7 @@ def main():
 
     if errors:
         print(f"{len(errors)} source(s) failed:", *errors, sep="\n  ", file=sys.stderr)
-        sys.exit(1)  # nonzero → wrapper shell script skips the commit
-
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
