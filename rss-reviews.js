@@ -108,10 +108,9 @@ var RSS_REVIEWS = {
     },
     {
       "name": "Sam H.",
-      "letterboxdUrl": "https://letterboxd.com/samsonite49/film/dazed-and-confused/1/",
+      "letterboxdUrl": "https://letterboxd.com/samsonite49/film/dazed-and-confused/",
       "date": "2026-04-21",
-      "text": "Hazed and Groomed",
-      "rewatch": true
+      "text": "I love watching children get beat up for 103 minutes"
     },
     {
       "name": "Sam H.",
@@ -365,4 +364,4 @@ var RSS_REVIEWS = {
       "rating": 3.5
     }
   ]
-};F
+};
