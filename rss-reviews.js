@@ -112,12 +112,6 @@ var RSS_REVIEWS = {
       "date": "2026-04-21",
       "text": "I love watching children get beat up for 103 minutes"
     },
-    {
-      "name": "Sam H.",
-      "letterboxdUrl": "https://letterboxd.com/samsonite49/film/dazed-and-confused/",
-      "date": "2026-04-21",
-      "text": "I love watching children get beat up for 103 minutes"
-    }
   ],
   "Eephus": [
     {
