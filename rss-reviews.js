@@ -46,6 +46,16 @@ var RSS_REVIEWS = {
       "rating": 4.0
     }
   ],
+   "Chicken Run": [
+    {
+      "name": "Nathan H.",
+      "letterboxdUrl": "https://letterboxd.com/njh20/film/chicken-run/",
+      "date": "2024-07-30",
+      "rewatch": true,
+      "liked": true,
+      "rating": 3.5
+    }
+  ], 
   "Daddy Longlegs": [
     {
       "name": "Dylan W.",
@@ -345,7 +355,23 @@ var RSS_REVIEWS = {
       "rating": 3.0
     }
   ],
+  "The Taste of Things": [
+    {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/the-taste-of-things/",
+      "date": "2025-04-01",
+      "text": "2/3 cooking asmr\n\n1/3 daring to ask “what if the love language of acts of service was specifically the act of serving pretentious French cuisine?”",
+      "rating": 2.0
+    }
+  ],  
   "Treasure Planet": [
+    {
+      "name": "Dylan W.",
+      "letterboxdUrl": "https://letterboxd.com/djweaver29/film/treasure-planet/1/",
+      "date": "2025-07-22",
+      "text": "Did not appreciate how hard the \"camera\" goes in some of these scenes as a kid. Treasure Planet walked so Tintin could run.",
+      "rewatch": true
+    },
     {
       "name": "Morgan M.",
       "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/treasure-planet/",
