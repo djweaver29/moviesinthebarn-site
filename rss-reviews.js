@@ -46,16 +46,6 @@ var RSS_REVIEWS = {
       "rating": 4.0
     }
   ],
-  "Chicken Run": [
-    {
-      "name": "Nathan H.",
-      "letterboxdUrl": "https://letterboxd.com/njh20/film/chicken-run/",
-      "date": "2024-07-30",
-      "rewatch": true,
-      "liked": true,
-      "rating": 3.5
-    }
-  ],
   "Daddy Longlegs": [
     {
       "name": "Dylan W.",
@@ -111,7 +101,7 @@ var RSS_REVIEWS = {
       "letterboxdUrl": "https://letterboxd.com/samsonite49/film/dazed-and-confused/",
       "date": "2026-04-21",
       "text": "I love watching children get beat up for 103 minutes"
-    },
+    }
   ],
   "Eephus": [
     {
@@ -317,6 +307,28 @@ var RSS_REVIEWS = {
       "rating": 4.0
     }
   ],
+  "The Awful Truth": [
+    {
+      "name": "Dylan W.",
+      "letterboxdUrl": "https://letterboxd.com/djweaver29/film/the-awful-truth/1/",
+      "date": "2026-05-05",
+      "text": "Few things are more engaging than Irene Dunne and Cary Grant politely ridiculing each other. This movie just rules. Hearing the crowd roar with laughter during the sequence with the hats brought me so much joy. So glad I get to share this with people.",
+      "rewatch": true
+    },
+    {
+      "name": "Joe H.",
+      "letterboxdUrl": "https://letterboxd.com/bigjoe0024/film/the-awful-truth/",
+      "date": "2026-05-05",
+      "text": "This movie is like if the pina colada song was a movie...\n\nI hate that song."
+    },
+    {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/the-awful-truth/",
+      "date": "2026-05-05",
+      "text": "mr. smith &gt; all cats",
+      "rating": 3.5
+    }
+  ],
   "The Florida Project": [
     {
       "name": "Dylan W.",
@@ -333,23 +345,7 @@ var RSS_REVIEWS = {
       "rating": 3.0
     }
   ],
-  "The Taste of Things": [
-    {
-      "name": "Morgan M.",
-      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/the-taste-of-things/",
-      "date": "2025-04-01",
-      "text": "2/3 cooking asmr\n\n1/3 daring to ask “what if the love language of acts of service was specifically the act of serving pretentious French cuisine?”",
-      "rating": 2.0
-    }
-  ],
   "Treasure Planet": [
-    {
-      "name": "Dylan W.",
-      "letterboxdUrl": "https://letterboxd.com/djweaver29/film/treasure-planet/1/",
-      "date": "2025-07-22",
-      "text": "Did not appreciate how hard the \"camera\" goes in some of these scenes as a kid. Treasure Planet walked so Tintin could run.",
-      "rewatch": true
-    },
     {
       "name": "Morgan M.",
       "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/treasure-planet/",
