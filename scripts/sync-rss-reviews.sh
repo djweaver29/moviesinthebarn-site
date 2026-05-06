@@ -33,9 +33,17 @@ git fetch origin
 git checkout main
 git merge --ff-only origin/main
 
-# Regenerate. If any feed fails, the Python script exits nonzero and we bail
-# without committing — the next run will retry.
-python3 "$SCRIPT_DIR/sync-rss-reviews.py"
+# Back up the current rss-reviews.js so a failed run can be rolled back.
+cp rss-reviews.js rss-reviews.js.bak
+
+# Regenerate. If any feed fails, restore the backup and bail.
+if ! python3 "$SCRIPT_DIR/sync-rss-reviews.py"; then
+  echo "Python script failed; restoring previous rss-reviews.js" >&2
+  mv rss-reviews.js.bak rss-reviews.js
+  exit 1
+fi
+
+rm -f rss-reviews.js.bak
 
 # Nothing to do if the file is unchanged.
 if git diff --quiet -- rss-reviews.js; then
