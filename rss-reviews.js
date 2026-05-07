@@ -46,7 +46,7 @@ var RSS_REVIEWS = {
       "rating": 4.0
     }
   ],
-   "Chicken Run": [
+  "Chicken Run": [
     {
       "name": "Nathan H.",
       "letterboxdUrl": "https://letterboxd.com/njh20/film/chicken-run/",
@@ -55,7 +55,7 @@ var RSS_REVIEWS = {
       "liked": true,
       "rating": 3.5
     }
-  ], 
+  ],
   "Daddy Longlegs": [
     {
       "name": "Dylan W.",
@@ -335,7 +335,7 @@ var RSS_REVIEWS = {
       "name": "Morgan M.",
       "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/the-awful-truth/",
       "date": "2026-05-05",
-      "text": "mr. smith &gt; all cats",
+      "text": "these two’s rebounds give the concept of 90 day fiancé(e) quite a run for its money\n\nalso I’m a sucker for anyone who gives a dog a human name and mr. smith may be the most anthropomorphic yet still overall canine human-named dog ever. genius.",
       "rating": 3.5
     }
   ],
@@ -363,7 +363,7 @@ var RSS_REVIEWS = {
       "text": "2/3 cooking asmr\n\n1/3 daring to ask “what if the love language of acts of service was specifically the act of serving pretentious French cuisine?”",
       "rating": 2.0
     }
-  ],  
+  ],
   "Treasure Planet": [
     {
       "name": "Dylan W.",
