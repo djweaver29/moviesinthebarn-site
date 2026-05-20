@@ -37,6 +37,22 @@ var RSS_REVIEWS = {
       "rating": 3.5
     }
   ],
+  "Before Midnight": [
+    {
+      "name": "Dylan W.",
+      "letterboxdUrl": "https://letterboxd.com/djweaver29/film/before-midnight/2/",
+      "date": "2026-05-19",
+      "text": "It's been years since I last watched this movie, and I've grown in that time. Watching it this time, I was annoyed at how little Jesse and Celeste (and I guess, Linklater) had grown up. I still find the movie compelling, but so many of the conversations they have feel juvenile. This is what I imagined adult conversations would be, but now I'm here, and I look at this rut they're in and just think <i>there's so much more out there</i>. They go into a church and still the only thing they can talk about is sex. Call me crazy, but I think there's a lot more to life than that.",
+      "rewatch": true
+    },
+    {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/before-midnight/",
+      "date": "2026-05-19",
+      "text": "did not expect everyone to have an existential crisis about ai destroying creativity at the dinner party in 2013",
+      "rating": 3.0
+    }
+  ],
   "Before Sunset": [
     {
       "name": "Morgan M.",
