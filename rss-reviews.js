@@ -72,6 +72,38 @@ var RSS_REVIEWS = {
       "rating": 3.5
     }
   ],
+  "Chronicle": [
+    {
+      "name": "Dylan W.",
+      "letterboxdUrl": "https://letterboxd.com/djweaver29/film/chronicle/2/",
+      "date": "2026-06-02",
+      "text": "I remember this movie being dark, but I think when I was younger watching it, the darkness rolled off of me more. Now I watch it and the stuff with his dad bums me out so much. Obviously it's not meant to be cheerful, but I found watching Andrew's spiral downward far more brutal this time.\n\nStill think the concept is cool and well executed. For good and bad this movie captures the idea of what if a bunch of high school boys got super powers really well.",
+      "rewatch": true
+    },
+    {
+      "name": "Jacob L.",
+      "letterboxdUrl": "https://letterboxd.com/fluffymastodons/film/chronicle/",
+      "date": "2026-06-02",
+      "text": "Remember when people were paying $500 for a camcorder?<br />More seriously this movie does so much right, and the way superhero movies have changed since only serves to make it better.",
+      "rewatch": true,
+      "liked": true,
+      "rating": 4.0
+    },
+    {
+      "name": "Joe H.",
+      "letterboxdUrl": "https://letterboxd.com/bigjoe0024/film/chronicle/",
+      "date": "2026-06-02",
+      "text": "The dad deserved worse",
+      "liked": true
+    },
+    {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/chronicle/",
+      "date": "2026-06-02",
+      "text": "I don’t think I want to have the flying dreams anymore",
+      "rating": 4.0
+    }
+  ],
   "Daddy Longlegs": [
     {
       "name": "Dylan W.",
