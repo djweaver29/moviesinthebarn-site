@@ -133,7 +133,7 @@ const EVENTS = [
     month: "August",
     theme: "Spies",
     title: "RED",
-    date: "2026-08-25",
+    date: "2026-08-18",
     time: "19:00",
     runtime: "111min",
     rating: "PG-13",
