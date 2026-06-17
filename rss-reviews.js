@@ -365,6 +365,31 @@ var RSS_REVIEWS = {
       "rating": 4.0
     }
   ],
+  "Sky High": [
+    {
+      "name": "Dylan W.",
+      "letterboxdUrl": "https://letterboxd.com/djweaver29/film/sky-high-2005/",
+      "date": "2026-06-16",
+      "text": "It's a rom-com in superhero clothing, so for a kid who felt insecure about liking rom-coms, it's no wonder I liked it so much.",
+      "rewatch": true
+    },
+    {
+      "name": "Joe H.",
+      "letterboxdUrl": "https://letterboxd.com/bigjoe0024/film/sky-high-2005/",
+      "date": "2026-06-16",
+      "text": "<a href=\"https://youtu.be/hcr02D5D_Iw\" rel=\"nofollow\">youtu.be/hcr02D5D_Iw</a>",
+      "liked": true
+    },
+    {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/sky-high-2005/",
+      "date": "2026-06-16",
+      "text": "it’s always a great time when a childhood favorite holds up and exceeds my memories",
+      "rewatch": true,
+      "liked": true,
+      "rating": 3.5
+    }
+  ],
   "The Awful Truth": [
     {
       "name": "Dylan W.",
