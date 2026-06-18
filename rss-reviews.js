@@ -388,6 +388,13 @@ var RSS_REVIEWS = {
       "rewatch": true,
       "liked": true,
       "rating": 3.5
+    },
+    {
+      "name": "Nathan H.",
+      "letterboxdUrl": "https://letterboxd.com/njh20/film/sky-high-2005/",
+      "date": "2026-06-16",
+      "liked": true,
+      "rating": 3.0
     }
   ],
   "The Awful Truth": [
