@@ -94,7 +94,7 @@ const EVENTS = [
     month: "July",
     theme: "A Noble Criminal",
     title: "Robin Hood",
-    date: "2026-07-07",
+    date: "2026-07-08",
     time: "19:00",
     runtime: "83min",
     rating: "G",
