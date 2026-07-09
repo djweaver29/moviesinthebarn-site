@@ -14,6 +14,17 @@
 
 const FILM_REVIEWS = {
 
+  "Robin Hood":[
+    {
+      name:"Kurtis Z.",
+      rewatch:true,
+      rating:2.0,
+      text:"Still not my favorite but fun time with my boys",
+      letterboxdUrl:"https://letterboxd.com/warwickwarrior/film/robin-hood/1/",
+      date:"2026-07-08"
+    },
+  ],
+  
   "Eephus": [
     {
       name: "Dylan W.",
