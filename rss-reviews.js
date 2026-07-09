@@ -348,6 +348,30 @@ var RSS_REVIEWS = {
       "rating": 4.0
     }
   ],
+  "Robin Hood": [
+    {
+      "name": "Dylan W.",
+      "letterboxdUrl": "https://letterboxd.com/djweaver29/film/robin-hood/2/",
+      "date": "2026-07-08",
+      "text": "The hen playing football scene is some unbelievably good visual comedy.",
+      "rewatch": true
+    },
+    {
+      "name": "Joe H.",
+      "letterboxdUrl": "https://letterboxd.com/bigjoe0024/film/robin-hood/",
+      "date": "2026-07-08",
+      "text": "The Philadelphia Eagles need to draft that chicken for their O-line ASAP",
+      "rewatch": true,
+      "liked": true
+    },
+    {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/robin-hood/",
+      "date": "2026-07-08",
+      "text": "is… is the song over the opening credits the original version of the hampster dance song?\n\nanyway I love me some hand drawn animation.",
+      "rating": 3.0
+    }
+  ],
   "Sing Street": [
     {
       "name": "Dylan W.",
