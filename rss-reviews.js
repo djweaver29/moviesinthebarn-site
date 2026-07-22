@@ -459,6 +459,23 @@ var RSS_REVIEWS = {
       "rating": 3.0
     }
   ],
+  "The Princess Bride": [
+    {
+      "name": "Dylan W.",
+      "letterboxdUrl": "https://letterboxd.com/djweaver29/film/the-princess-bride/2/",
+      "date": "2026-07-21",
+      "text": "The comedic orchestration does not get enough credit.",
+      "rewatch": true
+    },
+    {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/the-princess-bride/",
+      "date": "2026-07-21",
+      "text": "how can one movie be so iconic that is all thank you",
+      "liked": true,
+      "rating": 5.0
+    }
+  ],
   "The Taste of Things": [
     {
       "name": "Morgan M.",
