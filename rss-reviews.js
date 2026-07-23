@@ -468,6 +468,13 @@ var RSS_REVIEWS = {
       "rewatch": true
     },
     {
+      "name": "Joe H.",
+      "letterboxdUrl": "https://letterboxd.com/bigjoe0024/film/the-princess-bride/",
+      "date": "2026-07-21",
+      "text": "Masterpiece.",
+      "liked": true
+    },
+    {
       "name": "Morgan M.",
       "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/the-princess-bride/",
       "date": "2026-07-21",
