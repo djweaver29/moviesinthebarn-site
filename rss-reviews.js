@@ -42,7 +42,7 @@ var RSS_REVIEWS = {
       "name": "Dylan W.",
       "letterboxdUrl": "https://letterboxd.com/djweaver29/film/before-midnight/2/",
       "date": "2026-05-19",
-      "text": "It's been years since I last watched this movie, and I've grown in that time. Watching it this time, I was annoyed at how little Jesse and Celine (and I guess, Linklater) had grown up. I still find the movie compelling, but so many of the conversations they have feel juvenile. This is what I imagined adult conversations would be, but now I'm here, and I look at this rut they're in and just think <i>there's so much more out there</i>. They go into a church and still the only thing they can talk about is sex. Call me crazy, but I think there's a lot more to life than that.",
+      "text": "It&#039;s been years since I last watched this movie, and I&#039;ve grown in that time. Watching it this time, I was annoyed at how little Jesse and Celine (and I guess, Linklater) had grown up. I still find the movie compelling, but so many of the conversations they have feel juvenile. This is what I imagined adult conversations would be, but now I&#039;m here, and I look at this rut they&#039;re in and just think <i>there&#039;s so much more out there</i>. They go into a church and still the only thing they can talk about is sex. Call me crazy, but I think there&#039;s a lot more to life than that.",
       "rewatch": true
     },
     {
@@ -77,7 +77,7 @@ var RSS_REVIEWS = {
       "name": "Dylan W.",
       "letterboxdUrl": "https://letterboxd.com/djweaver29/film/chronicle/2/",
       "date": "2026-06-02",
-      "text": "I remember this movie being dark, but I think when I was younger watching it, the darkness rolled off of me more. Now I watch it and the stuff with his dad bums me out so much. Obviously it's not meant to be cheerful, but I found watching Andrew's spiral downward far more brutal this time.\n\nStill think the concept is cool and well executed. For good and bad this movie captures the idea of what if a bunch of high school boys got super powers really well.",
+      "text": "I remember this movie being dark, but I think when I was younger watching it, the darkness rolled off of me more. Now I watch it and the stuff with his dad bums me out so much. Obviously it&#039;s not meant to be cheerful, but I found watching Andrew&#039;s spiral downward far more brutal this time.\n\nStill think the concept is cool and well executed. For good and bad this movie captures the idea of what if a bunch of high school boys got super powers really well.",
       "rewatch": true
     },
     {
@@ -131,7 +131,7 @@ var RSS_REVIEWS = {
       "name": "Dylan W.",
       "letterboxdUrl": "https://letterboxd.com/djweaver29/film/dazed-and-confused/5/",
       "date": "2026-04-21",
-      "text": "Ben Affleck and Parker Posey are just downright evil in this movie.\n\nI like Pink though. Even if his motivations are often selfish, he's looking out for people. Same with Jodi. They're not going to break this cycle of hazing, but at least they're nice about it.",
+      "text": "Ben Affleck and Parker Posey are just downright evil in this movie.\n\nI like Pink though. Even if his motivations are often selfish, he&#039;s looking out for people. Same with Jodi. They&#039;re not going to break this cycle of hazing, but at least they&#039;re nice about it.",
       "rewatch": true
     },
     {
@@ -189,7 +189,7 @@ var RSS_REVIEWS = {
       "name": "Jacob L.",
       "letterboxdUrl": "https://letterboxd.com/fluffymastodons/film/fantastic-mr-fox/",
       "date": "2024-07-16",
-      "text": "Somehow I haven't seen this film before today. What a great movie, I regret not having seen it all the way through sooner.",
+      "text": "Somehow I haven&#039;t seen this film before today. What a great movie, I regret not having seen it all the way through sooner.",
       "rating": 4.0
     }
   ],
@@ -394,7 +394,7 @@ var RSS_REVIEWS = {
       "name": "Dylan W.",
       "letterboxdUrl": "https://letterboxd.com/djweaver29/film/sky-high-2005/",
       "date": "2026-06-16",
-      "text": "It's a rom-com in superhero clothing, so for a kid who felt insecure about liking rom-coms, it's no wonder I liked it so much.",
+      "text": "It&#039;s a rom-com in superhero clothing, so for a kid who felt insecure about liking rom-coms, it&#039;s no wonder I liked it so much.",
       "rewatch": true
     },
     {
