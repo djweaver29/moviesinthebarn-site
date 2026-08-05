@@ -57,7 +57,7 @@ const MOVIE_META = {
     cast: ["Cary Elwes", "Mandy Patinkin", "Robin Wright"],
     hasBluray: true, has4K: true
   },
-  "Mission: Impossible - Ghost Protocol": {
+  "Mission: Impossible – Ghost Protocol": {
     genres: ["Action", "Adventure", "Thriller"],
     director: "Brad Bird",
     cast: ["Tom Cruise", "Jeremy Renner", "Simon Pegg"],
