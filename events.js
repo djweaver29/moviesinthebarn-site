@@ -119,7 +119,7 @@ const EVENTS = [
     year: 2026,
     month: "August",
     theme: "Spies",
-    title: "Mission: Impossible - Ghost Protocol",
+    title: "Mission: Impossible – Ghost Protocol",
     date: "2026-08-04",
     time: "19:00",
     runtime: "132min",
