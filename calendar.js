@@ -79,7 +79,7 @@ const POSTER_PAN = {
   "Sky High":                            "27% 30%",
   "Robin Hood":                          "center center",
   "The Princess Bride":                  "center center",
-  "Mission: Impossible - Ghost Protocol":"center 38%",
+  "Mission: Impossible – Ghost Protocol":"center 38%",
   "Annie Get Your Gun":                  "40% 25%",
   "Exam":                                "55% 30%",
   "RED":                                 "30% 25%",
@@ -100,7 +100,7 @@ const BUBBLE_POS = {
   "Sky High":                            "bl",  // subjects upper-center, bottom-left clear
   "Robin Hood":                          "br",  // Robin Hood center-left
   "The Princess Bride":                  "tr",  // couple centered, upper-right clear
-  "Mission: Impossible - Ghost Protocol":"bl",  // Cruise dead center
+  "Mission: Impossible – Ghost Protocol":"bl",  // Cruise dead center
   "Annie Get Your Gun":                  "tl",  // subjects center, upper-left clear
   "Exam":                                "br",  // woman's face upper-center, desk area bottom-right
   "RED":                                 "tr",  // all three faces lower-center, upper-right clear
@@ -333,7 +333,7 @@ function openFilmModalFromData(e) {
 const JUSTWATCH_OVERRIDE = {
   // Slug doesn't match auto-generated title
   "The Road Warrior":     "mad-max-2-the-road-warrior",
-  "Mission: Impossible - Ghost Protocol": "mission-impossible-iv",
+  "Mission: Impossible – Ghost Protocol": "mission-impossible-iv",
   "Dungeons & Dragons: Honor Among Thieves": "dungeons-and-dragons-2023",
   "Once Upon a Time... in Hollywood": "once-upon-a-time-in-hollywood",
   "Donnie Darko":         "donnie-darko-directors-cut",
