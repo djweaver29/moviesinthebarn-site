@@ -472,6 +472,7 @@ var RSS_REVIEWS = {
       "letterboxdUrl": "https://letterboxd.com/bigjoe0024/film/the-princess-bride/",
       "date": "2026-07-21",
       "text": "Masterpiece.",
+      "rewatch": true,
       "liked": true
     },
     {
