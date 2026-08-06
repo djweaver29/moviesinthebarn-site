@@ -276,6 +276,29 @@ var RSS_REVIEWS = {
       "rating": 5.0
     }
   ],
+  "Mission: Impossible – Ghost Protocol": [
+    {
+      "name": "Dylan W.",
+      "letterboxdUrl": "https://letterboxd.com/djweaver29/film/mission-impossible-ghost-protocol/1/",
+      "date": "2026-08-04",
+      "text": "Even on rewatch the Burj Khalifa is breathtaking.",
+      "rewatch": true
+    },
+    {
+      "name": "Joe H.",
+      "letterboxdUrl": "https://letterboxd.com/bigjoe0024/film/mission-impossible-ghost-protocol/",
+      "date": "2026-08-04",
+      "text": "This movie was brought to you by BMW",
+      "liked": true
+    },
+    {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/mission-impossible-ghost-protocol/",
+      "date": "2026-08-04",
+      "text": "that mission sure felt impossible",
+      "rating": 3.5
+    }
+  ],
   "Moonrise Kingdom": [
     {
       "name": "Dylan W.",
