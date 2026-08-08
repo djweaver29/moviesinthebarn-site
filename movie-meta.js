@@ -411,7 +411,7 @@ const MOVIE_META = {
   "Speed Racer": {
     genres: ["Action", "Adventure", "Family"],
     director: "Lana Wachowski, Lilly Wachowski",
-    cast: ["Emile Hirsch", "Christina Ricci", "John Goodman"]
+    cast: ["Emile Hirsch", "Christina Ricci", "John Goodman"],
     has4K: true
   },
   "Valerian and the City of a Thousand Planets": {
