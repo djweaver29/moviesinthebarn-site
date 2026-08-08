@@ -297,6 +297,12 @@ var RSS_REVIEWS = {
       "date": "2026-08-04",
       "text": "that mission sure felt impossible",
       "rating": 3.5
+    },
+    {
+      "name": "Nathan H.",
+      "letterboxdUrl": "https://letterboxd.com/njh20/film/mission-impossible-ghost-protocol/",
+      "date": "2026-08-04",
+      "rating": 3.5
     }
   ],
   "Moonrise Kingdom": [
