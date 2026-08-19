@@ -377,6 +377,29 @@ var RSS_REVIEWS = {
       "rating": 4.0
     }
   ],
+  "RED": [
+    {
+      "name": "Dylan W.",
+      "letterboxdUrl": "https://letterboxd.com/djweaver29/film/red-2010/",
+      "date": "2026-08-18",
+      "text": "This movie is striking a wild tone. The jokes are understated, but the action is way over the top. Definitely kept me on my toes, but I think it worked. Bruce Willis exiting the moving car upright and firing a gun is perfection."
+    },
+    {
+      "name": "Joe H.",
+      "letterboxdUrl": "https://letterboxd.com/bigjoe0024/film/red-2010/",
+      "date": "2026-08-18",
+      "text": "We need to let Elizabeth pick the movie more often.",
+      "liked": true
+    },
+    {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/red-2010/",
+      "date": "2026-08-18",
+      "text": "Bruce Willis? ✅<br />Christmas decor? ✅\n\nguess this is die hard now",
+      "liked": true,
+      "rating": 3.0
+    }
+  ],
   "Robin Hood": [
     {
       "name": "Dylan W.",
