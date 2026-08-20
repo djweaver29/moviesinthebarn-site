@@ -398,6 +398,13 @@ var RSS_REVIEWS = {
       "text": "Bruce Willis? ✅<br />Christmas decor? ✅\n\nguess this is die hard now",
       "liked": true,
       "rating": 3.0
+    },
+    {
+      "name": "Nathan H.",
+      "letterboxdUrl": "https://letterboxd.com/njh20/film/red-2010/",
+      "date": "2026-08-18",
+      "liked": true,
+      "rating": 2.5
     }
   ],
   "Robin Hood": [
