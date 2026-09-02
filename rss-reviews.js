@@ -431,6 +431,28 @@ var RSS_REVIEWS = {
       "rating": 3.0
     }
   ],
+  "Seven Brides for Seven Brothers": [
+    {
+      "name": "Dylan W.",
+      "letterboxdUrl": "https://letterboxd.com/djweaver29/film/seven-brides-for-seven-brothers/",
+      "date": "2026-09-01",
+      "text": "This had way more in common with the Grinch than I was anticipating."
+    },
+    {
+      "name": "Joe H.",
+      "letterboxdUrl": "https://letterboxd.com/bigjoe0024/film/seven-brides-for-seven-brothers/",
+      "date": "2026-09-01",
+      "rewatch": true,
+      "liked": true
+    },
+    {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/seven-brides-for-seven-brothers/",
+      "date": "2026-09-01",
+      "text": "the barn raising scene was giving “what if we choreographed this like a bird courtship dance” /positive",
+      "rating": 3.0
+    }
+  ],
   "Sing Street": [
     {
       "name": "Dylan W.",
