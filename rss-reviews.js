@@ -21,6 +21,28 @@ var RSS_REVIEWS = {
       "rating": 3.0
     }
   ],
+  "Annie Get Your Gun": [
+    {
+      "name": "Dylan W.",
+      "letterboxdUrl": "https://letterboxd.com/djweaver29/film/annie-get-your-gun/",
+      "date": "2026-09-15",
+      "text": "Charlie&#039;s the real MVP here."
+    },
+    {
+      "name": "Joe H.",
+      "letterboxdUrl": "https://letterboxd.com/bigjoe0024/film/annie-get-your-gun/",
+      "date": "2026-09-15",
+      "text": "Way better lead song than Seven Brides For Seven Brothers&#039; &quot;Bless your beautiful hide&quot;",
+      "liked": true
+    },
+    {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/annie-get-your-gun/",
+      "date": "2026-09-15",
+      "text": "whoever decided that annie breaks the fourth wall purely with eye contact during some of her musical numbers, I like you.",
+      "rating": 3.0
+    }
+  ],
   "Babette's Feast": [
     {
       "name": "Morgan M.",
