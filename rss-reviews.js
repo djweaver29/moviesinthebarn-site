@@ -41,6 +41,12 @@ var RSS_REVIEWS = {
       "date": "2026-09-15",
       "text": "whoever decided that annie breaks the fourth wall purely with eye contact during some of her musical numbers, I like you.",
       "rating": 3.0
+    },
+    {
+      "name": "Nathan H.",
+      "letterboxdUrl": "https://letterboxd.com/njh20/film/annie-get-your-gun/",
+      "date": "2026-09-15",
+      "rating": 2.0
     }
   ],
   "Babette's Feast": [
