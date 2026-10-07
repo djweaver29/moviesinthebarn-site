@@ -212,6 +212,28 @@ var RSS_REVIEWS = {
       "rating": 3.5
     }
   ],
+  "Exam": [
+    {
+      "name": "Joe H.",
+      "letterboxdUrl": "https://letterboxd.com/bigjoe0024/film/exam/",
+      "date": "2026-10-06",
+      "liked": true
+    },
+    {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/exam/",
+      "date": "2026-10-06",
+      "text": "fully thought the names at the beginning were the names of the characters and not the actor credits",
+      "rating": 3.0
+    },
+    {
+      "name": "Nathan H.",
+      "letterboxdUrl": "https://letterboxd.com/njh20/film/exam/",
+      "date": "2026-10-06",
+      "liked": true,
+      "rating": 3.5
+    }
+  ],
   "Fantastic Mr. Fox": [
     {
       "name": "Jacob L.",
