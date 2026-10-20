@@ -231,7 +231,7 @@ var RSS_REVIEWS = {
       "letterboxdUrl": "https://letterboxd.com/njh20/film/exam/",
       "date": "2026-10-06",
       "liked": true,
-      "rating": 3.5
+      "rating": 3.0
     }
   ],
   "Fantastic Mr. Fox": [
