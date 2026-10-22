@@ -251,6 +251,13 @@ var RSS_REVIEWS = {
       "text": "somehow despite being both <br />• a public school kid during the era where this was apparently regularly shown in public school science classes, and <br />• an actual science nerd who now has a biology degree <br />I have never seen this movie and wow was I missing out on a great thing\n\nalso this movie genetically engineered maya hawke ? probably. idk I’ll see myself out",
       "liked": true,
       "rating": 4.0
+    },
+    {
+      "name": "Nathan H.",
+      "letterboxdUrl": "https://letterboxd.com/njh20/film/gattaca/",
+      "date": "2026-10-20",
+      "liked": true,
+      "rating": 3.5
     }
   ],
   "Godzilla": [
