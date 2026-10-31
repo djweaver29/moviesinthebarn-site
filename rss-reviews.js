@@ -214,6 +214,12 @@ var RSS_REVIEWS = {
   ],
   "Exam": [
     {
+      "name": "Dylan W.",
+      "letterboxdUrl": "https://letterboxd.com/djweaver29/film/exam/",
+      "date": "2026-10-06",
+      "text": "Wild that this movie invented escape rooms <i>and</i> COVID."
+    },
+    {
       "name": "Joe H.",
       "letterboxdUrl": "https://letterboxd.com/bigjoe0024/film/exam/",
       "date": "2026-10-06",
@@ -244,6 +250,13 @@ var RSS_REVIEWS = {
     }
   ],
   "Gattaca": [
+    {
+      "name": "Dylan W.",
+      "letterboxdUrl": "https://letterboxd.com/djweaver29/film/gattaca/1/",
+      "date": "2026-10-20",
+      "text": "I feel like we’re overdue for another good near future noir.",
+      "rewatch": true
+    },
     {
       "name": "Morgan M.",
       "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/gattaca/",
