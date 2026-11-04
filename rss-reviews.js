@@ -90,6 +90,29 @@ var RSS_REVIEWS = {
       "rating": 4.0
     }
   ],
+  "BlackBerry": [
+    {
+      "name": "Dylan W.",
+      "letterboxdUrl": "https://letterboxd.com/djweaver29/film/blackberry-2023/1/",
+      "date": "2026-11-03",
+      "text": "More tech movies should be funny.",
+      "rewatch": true
+    },
+    {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/blackberry-2023/",
+      "date": "2026-11-03",
+      "text": "oh no I have all the same personality traits as Mike when it comes to conflict and people pleasing",
+      "rating": 3.5
+    },
+    {
+      "name": "Nathan H.",
+      "letterboxdUrl": "https://letterboxd.com/njh20/film/blackberry-2023/",
+      "date": "2026-11-03",
+      "liked": true,
+      "rating": 3.5
+    }
+  ],
   "Chicken Run": [
     {
       "name": "Nathan H.",
