@@ -605,6 +605,14 @@ var RSS_REVIEWS = {
       "rating": 3.0
     }
   ],
+  "Steve Jobs": [
+    {
+      "name": "Morgan M.",
+      "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/steve-jobs/",
+      "date": "2026-11-17",
+      "rating": 4.0
+    }
+  ],
   "The Awful Truth": [
     {
       "name": "Dylan W.",
