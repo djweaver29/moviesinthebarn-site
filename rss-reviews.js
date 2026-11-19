@@ -607,6 +607,13 @@ var RSS_REVIEWS = {
   ],
   "Steve Jobs": [
     {
+      "name": "Dylan W.",
+      "letterboxdUrl": "https://letterboxd.com/djweaver29/film/steve-jobs/1/",
+      "date": "2026-11-17",
+      "text": "The flaws of this movie fade with each watch and I just become more enamored with the performances and music and aesthetic choices. I love how little this movie cares about showing a realistic folding of events and instead just focuses on the broad strokes of this man and this company in three distinct moments.",
+      "rewatch": true
+    },
+    {
       "name": "Morgan M.",
       "letterboxdUrl": "https://letterboxd.com/ayoitsmo/film/steve-jobs/",
       "date": "2026-11-17",
